@@ -1,7 +1,47 @@
 {% extends 'survey/base.html' %}
+{% load static %}
 
 {% block content %}
-<div class="row">
-    Survey app demo
+<header class="page-header">
+    <h1><a href="#">Survey App's Base!</a></h1>
+</header>
+
+<div class="content container">
+    <div class="row">
+        <!--Card 1-->
+            <div class="col s12 m6 l4">
+                <div class="card">
+                    <div class="card-image">
+                    <img src="{% static "survey/demo-img1.jpg" %}">
+                    <span class="card-title">Happy Day</span>
+                    </div>
+                    <div class="card-content">
+                    <p>I am a very simple card. I am good at containing small bits of information.
+                    I am convenient because I require little markup to use effectively.</p>
+                    </div>
+                    <div class="card-action">
+                    <a href="#">This is a link</a>
+                    </div>
+                </div>
+            </div>
+
+        <!--Card 2-->
+            <div class="col s12 m6 l4">
+                <div class="card">
+                    <div class="card-image">
+                    <img src="{% static "survey/demo-img1.jpg" %}">
+                    <span class="card-title">Happy Daye</span>
+                    </div>
+                    <div class="card-content">
+                    <p>I am a very simple card. I am good at containing small bits of information.
+                    I am convenient because I require little markup to use effectively.</p>
+                    </div>
+                    <div class="card-action">
+                    <a href="#">This is a link</a>
+                    </div>
+                </div>
+            </div>
+    </div>
 </div>
+ 
 {% endblock %}

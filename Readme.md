@@ -5,6 +5,10 @@
 - Create app: survey
 - Demo done: /survey/demo (extend templates)
 
+# Day3
+- material CSS：https://materializecss.com/grid.html
+- 教學：https://www.youtube.com/watch?v=a3d_nyccpM8
+ 
 Todo:
 - Form
 - app level v.s project level structure
