@@ -42,6 +42,13 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'survey',
@@ -140,5 +147,29 @@ STATICFILES_DIRS = [
 ]
 
 
+
+## For allauth's settings
+ACCOUNT_EMAIL_REQUIRED = True
+
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+
+ACCOUNT_FORMS = {
+    'login': 'allauth.account.forms.LoginForm',
+    'signup': 'allauth.account.forms.SignupForm',
+    'add_email': 'allauth.account.forms.AddEmailForm',
+    'change_password': 'allauth.account.forms.ChangePasswordForm',
+    'set_password': 'allauth.account.forms.SetPasswordForm',
+    'reset_password': 'allauth.account.forms.ResetPasswordForm',
+    'reset_password_from_key': 'allauth.account.forms.ResetPasswordKeyForm',
+    'disconnect': 'allauth.socialaccount.forms.DisconnectForm',
+}
+
+AUTHENTICATION_BACKENDS = [
+        'django.contrib.auth.backends.ModelBackend',
+        'allauth.account.auth_backends.AuthenticationBackend',
+]
+SITE_ID = 1
+# SOCIAL_AUTH_FACEBOOK_KEY = 2248497962110198        # App ID
+# SOCIAL_AUTH_FACEBOOK_SECRET = 'c8a17f2f8baa3c584d7f55e6dfcb75d5'  # App Secret
