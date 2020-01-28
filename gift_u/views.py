@@ -13,7 +13,8 @@ import logging
 def index(request):
     return render(request, 'homepage.html', locals())
 
-## Deprecated
+## Deprecated after allauth
+
 # def register(request):
 #     if request.method == 'POST':
 #         form = UserCreationForm(request.POST)
@@ -31,3 +32,6 @@ def index(request):
 
 #     form = UserCreationForm
 #     return render(request, 'registration/register.html', context={"form":form})
+
+def profile(request):
+    return render(request, 'profile.html', locals())

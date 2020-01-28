@@ -24,7 +24,7 @@ urlpatterns = [
     # # Deprecated
     # path('register/',views.register, name='register'), 
     # path('login/',views.login, name='register'),
-    # path('accounts/', include('django.contrib.auth.urls')),
     path('accounts',include('allauth.urls')),
+    path('accounts/profile/',views.profile, name='user_profile'),
     path('survey/',include('survey.urls')),
 ]

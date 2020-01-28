@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% load socialaccount %}
+{% providers_media_js %}
+
+{% block content %}
+<div class="container">
+    <h1>Profile</h1>
+    <p>Username：{{ user }}</p>
+    <p>Email：{{ user.email }}</p>
+
+    <p><a href="{% provider_login_url "facebook" process="connect" %}">Connect a facebook account</a></p>
+    <p><a href="{% provider_login_url "google" process="connect" %}">Connect a Google account</a></p>
+</div>
+{% endblock %}
+
+
