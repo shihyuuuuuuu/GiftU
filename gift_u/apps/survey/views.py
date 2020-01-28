@@ -4,9 +4,14 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 
+from .models import Questionnaire, Question
 
-def index(request):
-    return render(request, 'survey/survey.html', {})
+
+def index(request, creator='admin', question_id='0'):
+    # questionnaire = Questionnaire.objects.filter(creator=creator).order_by('id')
+    # questionnaire = Questionnaire.objects.all()
+
+    return render(request, 'survey/survey.html', {'questionnaire':questionnaire})
 
 # def index(request):
 #     latest_question_list = Question.objects.order_by('-pub_date')[:5]
