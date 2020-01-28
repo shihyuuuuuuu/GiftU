@@ -21,7 +21,8 @@ from . import views ## For baseDir
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='homepage'),
-    path('register/',views.register, name='register'),
+    # # Deprecated
+    # path('register/',views.register, name='register'), 
     # path('login/',views.login, name='register'),
     # path('accounts/', include('django.contrib.auth.urls')),
     path('accounts',include('allauth.urls')),

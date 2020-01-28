@@ -1,5 +1,9 @@
 參考structure：https://web.archive.org/web/20140409085244/http://www.deploydjango.com/django_project_structure<br>
 
+測試帳號
+1. test2/abcd12345678
+2. 
+
 # Day2
 - postgresql setup
 - Create app: survey

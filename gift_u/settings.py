@@ -92,13 +92,14 @@ WSGI_APPLICATION = 'gift_u.wsgi.application'
 
 DATABASES = {
     'default': {
+        ## Deprecated
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'giftu_db',
         'USER': 'admin',
         'PASSWORD': 'admin',
-        'HOST': 'localhost',
+        'HOST': 'localhost', # Todo: Should be changed to real DB service
     }
 }
 
@@ -153,6 +154,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+AUTH_USER_MODEL = 'auth.User'
 
 
 ACCOUNT_FORMS = {
