@@ -1,22 +1,59 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+# models
+from .models import Questionnaire, ChoiceQuestion, Choice
+# views
+from django.views.generic import View
+# forms
+from .forms import QuestionnaireForm, ChoiceQuestionForm, ChoiceFormset
 
-# Create your views here.
+class QuestionnaireView(View):
+    
+    def get(self, request, username='admin'):
+        questionnaire_form = QuestionnaireForm()
+        choice_formset = ChoiceFormset(prefix='choice')
+        context = {
+            'questionnaire_form':questionnaire_form,
+            'choice_formset':choice_formset
+        }
+        return render(request, 'survey/survey.html', context)
 
-from django.http import HttpResponse
+    def post(self, request):
+        current_user = request.user
+        questionnaire_form = QuestionnaireForm(request.POST, initial={'creator':current_user})
+        # choice_formset = ChoiceFormset(request.POST])
+        
+        #先try一個
+        if questionnaire_form.is_valid():
+            ## inline formset 的做法
+            print("User: %s -- Questionnaire submit success"%current_user.username)
+            questionnaire_form.save()
+        #  正式
+        # if questionnaire_form.is_valid() and choice_formset.is_valid():
+        #     ## inline formset 的做法
+        #     questionnaire_form.save(commit=False)
+        #     for instance in instances:
+        #         instance.employee = new_employee
+        #         instance.save()
+        #     instances = choice_formset.save(commit=False)
+        #     for instance in instances:
+        #         instance.employee = new_employee
+        #         instance.save()
 
-from .models import Questionnaire, Question
+            
+            # Model Formset的做法
+            # instances = formset.save(commit=False) # Questionnaire object
+            # for instance in instances:
+            #     instance.creator = current_user.username
+            #     instance.save()
+        return redirect('/', {})
 
-
-def index(request, creator='admin', question_id='0'):
-    # questionnaire = Questionnaire.objects.filter(creator=creator).order_by('id')
-    # questionnaire = Questionnaire.objects.all()
-
-    return render(request, 'survey/survey.html', {'questionnaire':questionnaire})
+        
 
 # def index(request):
 #     latest_question_list = Question.objects.order_by('-pub_date')[:5]
 #     context = {'latest_question_list': latest_question_list}
 #     return render(request, 'polls/index.html', context)
 
-def demo(request):
-    return render(request, 'survey/demo.html', {})
+# Deprecated
+# def demo(request):
+#     return render(request, 'survey/demo.html', {})

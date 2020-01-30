@@ -12,29 +12,29 @@ class Questionnaire(models.Model):
     # 某個人寄得第n封信
     
     # 1.收禮者的email
-    receiver_email = models.EmailField(max_length=254, default='')
+    receiver_email = models.EmailField(verbose_name="收禮者的email", max_length=254, default='')
 
-    # 2.收禮者的 暱稱
-    receiver_nickname = models.CharField(max_length=200, default='')
+    # 2.收禮者的暱稱
+    receiver_nickname = models.CharField(verbose_name="收禮者的暱稱", max_length=200, default='')
 
     # 3.要讓他/她挑選哪三樣禮物呢？
 
 
     # 透露一些你的資訊給他/她吧！
-    sender_nickname = models.CharField(max_length=200, default='')
+    sender_nickname = models.CharField(verbose_name="送禮者的暱稱", max_length=200, default='')
 
     # Todo:認識對方多久了呢？（年/月/週）
     YEAR_TYPE = 0
     MONTH_TYPE = 1
     WEEK_TYPE = 2
-    type = models.SmallIntegerField(verbose_name="認識多久", choices=( (YEAR_TYPE, '年'), (MONTH_TYPE, '月'),  (WEEK_TYPE, '週') ), default=0)
+    type = models.SmallIntegerField(verbose_name="認識多久", choices=( (YEAR_TYPE, '年'), (MONTH_TYPE, '月'),  (WEEK_TYPE, '週') ), default=0, blank=True, null=True)
 
 
     # 還想對他/她說些什麼嗎？
-    extra_messages = models.CharField(max_length=200, default='', verbose_name="額外想說的話", blank=True)
+    extra_messages = models.CharField(verbose_name="額外想對他/她說的話", max_length=200, default='', blank=True)
 
     
-    creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True, default=0)
+    creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True, default=1)
     ## 
     # Todo: One Questionnaire...
     # - should be sent to one reciever (also an User).(but it might not yet registered!)
@@ -70,7 +70,7 @@ class Choice(models.Model):
     def __str__(self):
         return str(self.order_in_list) + '.' + self.choice_text
     choice_question = models.ForeignKey(ChoiceQuestion, on_delete=models.CASCADE, default=3)
-    choice_text = models.CharField(max_length=50)
+    choice_text = models.CharField(max_length=50, verbose_name="選項")
     order_in_list = models.IntegerField(default=1)
 
 ## Todo!!!! 
