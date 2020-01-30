@@ -7,7 +7,7 @@ class Questionnaire(models.Model):
     def __str__(self):
         return self.title
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, default='匿名信件')
 
     # 某個人寄得第n封信
     

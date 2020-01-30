@@ -7,11 +7,17 @@ from django.forms import inlineformset_factory
 class QuestionnaireForm(forms.ModelForm):
     class Meta:
         model = Questionnaire
-        exclude = ['creator']
+        fields = [
+            'receiver_email', 
+            'receiver_nickname', 
+            'sender_nickname',
+            'extra_messages',
+            ]
         labels = {
             'receiver_email': '收禮者的email',
             'receiver_nickname': '你想要如何稱呼對方',
             'sender_nickname': '你的暱稱（可以透露一點訊息給對方）',
+            'extra_messages': '你還想對她說什麼嗎？',
         }
 
 

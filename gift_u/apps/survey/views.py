@@ -21,8 +21,6 @@ class QuestionnaireView(View):
         current_user = request.user
         questionnaire_form = QuestionnaireForm(request.POST, prefix='questionnaire', initial={'creator':current_user})
 
-        
-        #先try一個
         if questionnaire_form.is_valid():
             ## inline formset 的做法
             questionnaire = questionnaire_form.save()
