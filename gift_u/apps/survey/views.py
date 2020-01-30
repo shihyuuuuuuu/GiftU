@@ -9,7 +9,7 @@ from .forms import QuestionnaireForm, ChoiceQuestionForm, ChoiceFormset
 class QuestionnaireView(View):
     
     def get(self, request, username='admin'):
-        questionnaire_form = QuestionnaireForm()
+        questionnaire_form = QuestionnaireForm(prefix='questionnaire')
         choice_formset = ChoiceFormset(prefix='choice')
         context = {
             'questionnaire_form':questionnaire_form,
@@ -19,32 +19,23 @@ class QuestionnaireView(View):
 
     def post(self, request):
         current_user = request.user
-        questionnaire_form = QuestionnaireForm(request.POST, initial={'creator':current_user})
-        # choice_formset = ChoiceFormset(request.POST])
+        questionnaire_form = QuestionnaireForm(request.POST, prefix='questionnaire', initial={'creator':current_user})
+
         
         #先try一個
         if questionnaire_form.is_valid():
             ## inline formset 的做法
-            print("User: %s -- Questionnaire submit success"%current_user.username)
-            questionnaire_form.save()
-        #  正式
-        # if questionnaire_form.is_valid() and choice_formset.is_valid():
-        #     ## inline formset 的做法
-        #     questionnaire_form.save(commit=False)
-        #     for instance in instances:
-        #         instance.employee = new_employee
-        #         instance.save()
-        #     instances = choice_formset.save(commit=False)
-        #     for instance in instances:
-        #         instance.employee = new_employee
-        #         instance.save()
+            questionnaire = questionnaire_form.save()
+            print("Questionnaire %s submit success"%questionnaire.id)
 
-            
-            # Model Formset的做法
-            # instances = formset.save(commit=False) # Questionnaire object
-            # for instance in instances:
-            #     instance.creator = current_user.username
-            #     instance.save()
+            choice_question = ChoiceQuestion.objects.create(questionnaire=questionnaire)
+            choice_formset = ChoiceFormset(request.POST, prefix='choice')
+            if choice_formset.is_valid():
+                instances = choice_formset.save(commit=False)
+                for instance in instances:
+                    instance.choice_question = choice_question
+                    instance.save()
+
         return redirect('/', {})
 
         
