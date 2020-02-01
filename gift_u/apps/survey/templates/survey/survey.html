@@ -7,63 +7,60 @@
     <br>
 </header>
 
-<form method="post">
-    {% csrf_token %}
-    <!-- Q1 -->
-    <div class="fieldWrapper">
-        {{ questionnaire_form.receiver_email.errors }}
-        <label for="{{ questionnaire_form.receiver_email.id_for_label }}">1.收禮者的Email:</label>
-        {{ questionnaire_form.receiver_email }}
-    </div>
-    
-    <!-- Q2, 選擇題 -->
-    <div class="fieldWrapper">
-        {{ questionnaire_form.receiver_nickname.errors }}
-        <label for="{{ questionnaire_form.receiver_nickname.id_for_label }}">2.收禮者的暱稱:</label>
-        {{ questionnaire_form.receiver_nickname }}
-    </div>
+    {% if read_only %}
+        <fieldset disabled="disabled">
+            <h3>問題</h3>
+            {{questionnaire_form.as_p}}
 
-    <!-- Q3 -->
-    <div class="fieldWrapper">
-        <label>3.要讓他/她收到哪3樣禮物呢？</label>
-        <div class="container">
+            <h3>選項</h3>
             {{choice_formset.as_p}}
-        </div>
-    </div>
-    
-    
-    <!-- Q4 -->
-    <div class="fieldWrapper">
-        {{ questionnaire_form.sender_nickname.errors }}
-        <label for="{{ questionnaire_form.sender_nickname.id_for_label }}">4.透露一些你的資訊給她吧！</label>
-        {{ questionnaire_form.sender_nickname }}
-    </div>
+        </fieldset>
 
+    {% else %}
+        <form method="post">
+                <fieldset>
+                {% csrf_token %}
+                <!-- Q1 -->
+                <div class="fieldWrapper">
+                    {{ questionnaire_form.receiver_email.errors }}
+                    <label for="{{ questionnaire_form.receiver_email.id_for_label }}">1.收禮者的Email:</label>
+                    {{ questionnaire_form.receiver_email }}
+                </div>
+                
+                <!-- Q2, 選擇題 -->
+                <div class="fieldWrapper">
+                    {{ questionnaire_form.receiver_nickname.errors }}
+                    <label for="{{ questionnaire_form.receiver_nickname.id_for_label }}">2.收禮者的暱稱:</label>
+                    {{ questionnaire_form.receiver_nickname }}
+                </div>
 
-     <!-- Q4 -->
-     <div class="fieldWrapper">
-        {{ questionnaire_form.extra_messages.errors }}
-        <label for="{{ questionnaire_form.extra_messages.id_for_label }}">5.你還想對她說什麼嗎？</label>
-        {{ questionnaire_form.extra_messages }}
-    </div>
+                <!-- Q3 -->
+                <div class="fieldWrapper">
+                    <label>3.要讓他/她收到哪3樣禮物呢？</label>
+                    <div class="container">
+                        {{choice_formset.as_p}}
+                    </div>
+                </div>
+                
+                <!-- Q4 -->
+                <div class="fieldWrapper">
+                    {{ questionnaire_form.sender_nickname.errors }}
+                    <label for="{{ questionnaire_form.sender_nickname.id_for_label }}">4.透露一些你的資訊給她吧！</label>
+                    {{ questionnaire_form.sender_nickname }}
+                </div>
 
-    <br>
-    <button class="btn waves-effect waves-light" type="submit">寄出</button>
-</form>
-    <!-- <div class="row">
-        <div class="col s12 red lighten-3">題目1</div>
-        <div class="col s12 red lighten-5">答案</div>
-    </div>
-    <div class="row">
-        <div class="col s12 red lighten-3">題目2</div>
-        <div class="col s12 red lighten-5">答案</div>
-    </div>
+                <!-- Q4 -->
+                <div class="fieldWrapper">
+                    {{ questionnaire_form.extra_messages.errors }}
+                    <label for="{{ questionnaire_form.extra_messages.id_for_label }}">5.你還想對她說什麼嗎？</label>
+                    {{ questionnaire_form.extra_messages }}
+                </div>
 
-    <div class="row">
-        <div class="col s12 red lighten-3">題目3</div>
-        <div class="col s12 red lighten-5">答案</div>
-    </div> -->
-
+                <br>
+                <button class="btn waves-effect waves-light" type="submit">寄出</button>
+            </fieldset>
+        </form>
+    {% endif %}
 {% endblock %}
 <script>
 </script>

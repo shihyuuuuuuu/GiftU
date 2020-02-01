@@ -25,7 +25,5 @@ class ChoiceQuestionForm(forms.ModelForm):
     class Meta:
         model = ChoiceQuestion
         fields = '__all__'
-
-# ChoiceQuestionFormset = inlineformset_factory(Questionnaire, ChoiceQuestion, fields=('__all__'))
-ChoiceFormset = inlineformset_factory(ChoiceQuestion, Choice, fields=('choice_text',), can_delete = False)
+ChoiceFormset = inlineformset_factory(ChoiceQuestion, Choice, fields=('choice_text',), can_delete = False, max_num=3)
 
