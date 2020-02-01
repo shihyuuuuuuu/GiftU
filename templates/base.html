@@ -26,11 +26,13 @@
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="/">Home</a></li>
             {% if user.is_authenticated %}
-            <li><a href="/survey">開始寫信</a></li>
+            <li><a href="{% url 'survey:index' %}">開始寫信</a></li>
             <li><a class="dropdown-trigger" href="#!" data-target="nav-dropdown">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
             <!-- Dropdown Structure -->
             <ul id="nav-dropdown" class="dropdown-content">
                 <li><a href="{% url 'user_profile' %}">個人頁面</a></li>
+                <li><a href="{% url 'user_dashboard' %}">信件總覽</a></li>
+                <li class="divider"></li>
                 <li><a href="{% url 'account_logout' %}">Logout</a></li>
             </ul>
             {% else %}

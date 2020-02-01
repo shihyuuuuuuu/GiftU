@@ -11,7 +11,7 @@ urlpatterns = [
     # ex: /survey/
     path('', QuestionnaireView.as_view(), name='index'),
     # ex: /survey/2
-    path('<str:questionnaire_id>/', QuestionnaireView.as_view(), name='index'),
+    path('<str:questionnaire_id>/', QuestionnaireView.as_view(), name='questionnaire'),
     # # ex: /survey/5/vote/
     # path('<int:question_id>/vote/', views.vote, name='vote'),
     # Deprecated

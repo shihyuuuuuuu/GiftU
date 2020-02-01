@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% load socialaccount %}
+{% providers_media_js %}
+
+{% block content %}
+<div class="container">
+    <h1>信件總覽</h1>
+
+    <table class="highlight centered">
+        <thead>
+          <tr>
+              <th>收禮者的email</th>
+              <th>收禮者的暱稱</th>
+              <th>...</th>
+              <th>還想對他/她說些什麼嗎？</th>
+              <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+            {% for questionnaire in questionnaires %}
+            <tr data-href='https://www.google.com'>
+                <td>{{questionnaire.receiver_email}}</td>
+                <td>{{questionnaire.receiver_nickname}}</td>
+                <td></td>
+                <td>{{questionnaire.extra_messages}}</td>
+                <td><a href="{% url 'survey:questionnaire' questionnaire_id=questionnaire.id %}">查看</a></td>
+            </tr>
+             {% endfor %}
+        </tbody>
+      </table>
+</div>
+{% endblock %}
+
+

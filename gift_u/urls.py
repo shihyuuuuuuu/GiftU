@@ -26,5 +26,6 @@ urlpatterns = [
     # path('login/',views.login, name='register'),
     path('accounts',include('allauth.urls')),
     path('accounts/profile/',views.profile, name='user_profile'),
+    path('accounts/dashboard/',views.dashboard, name='user_dashboard'),
     path('survey/',include('survey.urls')),
 ]
