@@ -6,8 +6,8 @@
 # 如何跑起來（以虛擬環境為例）
 １.在根目錄建立虛擬環境
 ```
-python3 -m venv venv <br>
-source ven/bin/activate <br>
+python3 -m venv venv 
+source ven/bin/activate 
 cd gift_u
 ```
 2.安裝套件
