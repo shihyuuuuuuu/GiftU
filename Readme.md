@@ -2,24 +2,22 @@
 
 測試帳號
 1. test2/abcd12345678
-2. 
 
-# Day2
-- postgresql setup
-- Create app: survey
-- Demo done: /survey/demo (extend templates)
+# 如何跑起來（以虛擬環境為例）
+１.在根目錄建立虛擬環境
+```
+python3 -m venv venv <br>
+source ven/bin/activate <br>
+cd gift_u
+```
+2.安裝套件
+```
+pip install -r requirements.txt
+```
 
-# Day3
-- material CSS：https://materializecss.com/grid.html
-- 教學：https://www.youtube.com/watch?v=a3d_nyccpM8
- 
-Todo:
-- Form
-- app level v.s project level structure
-- MVC
-- DRF(restful framework)
-- *Reusable Apps
-
-# Day3
+3.跑local server
+```
+python manage.py runserver
+```
 
 
