@@ -176,5 +176,16 @@ AUTHENTICATION_BACKENDS = [
         'allauth.account.auth_backends.AuthenticationBackend',
 ]
 SITE_ID = 1
+
+
+# Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'ntustartup2019@gmail.com'
+EMAIL_HOST_PASSWORD = 'osebceyysxigbhff'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+# EMAIL_PORT = 
+
 # SOCIAL_AUTH_FACEBOOK_KEY = 2248497962110198        # App ID
 # SOCIAL_AUTH_FACEBOOK_SECRET = 'c8a17f2f8baa3c584d7f55e6dfcb75d5'  # App Secret
