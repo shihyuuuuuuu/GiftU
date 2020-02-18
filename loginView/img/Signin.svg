@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.6, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="c" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="30 50 520 520" width="200" height="200" xml:space="preserve">
+<style type="text/css">
+	#Rectangle_28>.st0{fill:rgba(0, 0, 0, 0);stroke:#FFFFFF;stroke-width:10px;}
+	text.st1{fill:#FFFFFF;}
+	text.st2{font-family:'SegoeUI';}
+	text.st3{font-size: 120px;} <!-- 93.5294px -->
+</style>
+<g id="Group_117" transform="translate(-1800 -27)">
+	<g id="Rectangle_28" transform="translate(1800 27)">
+		<!-- <rect x="133.03" y="138.89" width="318" height="318"/>
+		<rect x="138.64" y="144.5" class="st0" width="306.78" height="306.78"/> -->
+		<line class="st0" x1="135.835" y1="141.695" x2="448.225" y2="141.695"></line>
+		<line class="st0" x1="135.835" y1="141.695" x2="135.835" y2="454.085"></line>
+		<line class="st0" x1="448.225" y1="454.085" x2="448.225" y2="141.695"></line>
+		<line class="st0" x1="448.225" y1="454.085" x2="135.835" y2="454.085"></line>
+	</g>
+	<text transform="matrix(1 0 0 1 1985.2037 300.089)" class="st1 st2 st3">Sign</text>
+	<text transform="matrix(1 0 0 1 2053.5886 420.548)" class="st1 st2 st3">in</text>
+</g>
+</svg>

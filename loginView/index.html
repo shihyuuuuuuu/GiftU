@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body>
+    <!-- title -->
+
+    <nav id="title" class="z-depth-3">
+        <div class="nav-wrapper">
+          <a href="#" id="brand">
+            <img id="brand_logo" class="brand button" src="./img/brand_logo.svg">
+            <img id="brand_text" class="brand button" src="./img/brand_text.svg">
+          </a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="#"><img id="send_btn" class="right button" src="./img/send_Logo.svg"></a></li>
+            <li><a href="#"><img id="inbox_btn" class="right button" src="./img/Inbox_Logo.svg"></a></li>
+            <li><a href="#"><img id="signIn_btn" class="right button" src="./img/Signin.svg"></a></li>
+          </ul>
+        </div>
+      </nav>
+        
+    <!-- form -->
+    <div class="row">
+        <div id="form" class="col s8 offset-s2 m6 offset-m3 z-depth-3">
+            <br>
+            <div class="row center-align white-text">
+                <p id="form_title">歡迎光臨</p>
+                <p id="form_subtitle">登入加溫你的心意</p> 
+            </div>
+            
+            <div class="row center-align">
+                <div id="login_google" class="white button login_btn">
+                    <img src="./img/google.svg">
+                    <b>&nbsp Google 登入</b>
+                </div>
+            </div><br>
+            <div class="row center-align">
+                <div id="login_fb" class="white button login_btn">
+                    <img src="./img/fb.svg">
+                    <b>&nbsp Facebook 登入</b>
+                </div>
+            </div>
+            <div id="bottom_text" class="center-align white-text">
+                沒有帳號嗎 ? 來<a id="sign_up" class="button" href="#">&nbsp 註冊 &nbsp</a>一個吧~
+            </div>
+            <br>
+        </div>
+    </div>
+<br><br>
+
+
+<!-- jquery -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js " integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo " crossorigin="anonymous "></script>
+<script src="./js/script.js"></script>
+<!-- testing z-depth(from materialized css framwork) outcome -->
+<script>
+    $(()=>{
+        $("div.login_btn").hover((e)=>{
+            $(e.target).toggleClass("z-depth-3")
+        })
+    })
+</script>
+</body>
+</html>

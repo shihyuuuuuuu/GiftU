@@ -1,0 +1,86 @@
+/*************
+*   Fonts
+**************/
+@font-face {
+    font-family: 'NotoSans';
+    src: url(../fonts/NotoSansCJKtc-Regular.otf);
+}
+
+
+/************
+*   Title
+*************/
+
+/* general */
+body{
+    background-color: rgb(232, 233, 233);
+}
+
+.row { margin: 0;}
+#title {
+    width: 80vw;
+    margin: 0 auto 5.0vw auto;
+    padding: 0 5px;
+    height: 6.0vw;
+    background-color: #2f3445;
+}
+
+/* brand & functional buttons */
+#brand, #nav-mobile>*>*>* {
+    height: 6.0vw;
+    overflow: hidden;
+}
+
+#brand>*{
+    height: 100%;
+}
+
+/***********
+*   FORM
+************/
+
+/* general */
+#form {
+    border-radius: 50px;
+    background-color: #874949;
+}
+
+/* form title text */
+#form_title { 
+    font-size: 4.5vw ;
+    font-family: NotoSans;
+    margin: 0;
+}
+#form_subtitle { 
+    font-size: 1.8vw;
+    font-family: NotoSans;
+    margin: 1.3vw 0 2.6vw 0;
+}
+
+/* login buttons */
+div.login_btn { /* 按鈕樣式 */
+    border-radius: 40px; 
+    width: 65%;
+    margin: auto;
+    padding: 15px 0px;
+    transition: all ease 0.2s;
+}
+div.login_btn>*{ /* 按鈕的 svg 圖及文字 (以 xxx 登入) */
+    vertical-align: middle;
+    pointer-events: none;
+}
+div.login_btn> img{ height: 3.0vw;} /* 按鈕的 svg 圖*/
+div.login_btn> b{ /* 按鈕的文字 (以 xxx 登入) */
+    font-size: 1.6vw;
+    font-family: NotoSans;
+} 
+div.login_btn:hover{ cursor: pointer;}
+
+/* bottom text */
+#bottom_text { 
+    font-size: 1.6vw;
+    font-family: NotoSans;
+    margin-top: 2.0vw;
+}
+
+#sign_up { color: #2e3346;} /* "註冊" 字樣 */
