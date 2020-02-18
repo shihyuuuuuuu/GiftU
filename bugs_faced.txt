@@ -1,0 +1,26 @@
+###--  postgresql login failed  --###  
+
+ERROR MESSAGE :  
+psql: error: could not connect to server: FATAL:  password authentication failed for user "shanpig"
+
+POSSIBLE PROBLEM : 
+
+SOLVED BY : 
+Connect to postgresql shell (psql) by user/password/port from installation of postgresql.
+
+############################################################
+
+###--  cannot jump to login page  --###
+
+ERROR MESSAGE : 
+django.db.utils.ProgrammingError: relation "django_site" does not exist
+LINE 1: ..."django_site"."domain", "django_site"."name" FROM "django_si...
+
+POSSIBLE PROBLEM :
+Super user is not created.
+
+SOLVED BY : 
+python manage.py createsuperuser
+set username/email/password => admin/ivan861118@gmail.com/admin
+
+#############################################################
