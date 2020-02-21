@@ -17,22 +17,16 @@
       margin: 0 auto;
       background-color: rgb(243, 223, 223);
     }
-    p{
-      font-family: NotoSans;
-    }
-    .custom{
-      color: #f7b42d;
-    }
+    h1, h2, h3{
+      font-family: NotoSans;}
+
+    /* 外加內容的樣式 */
+    .custom{ color: #f7b42d;}
 
     /**********
     *  Header
     ***********/
-    header{
-      margin-top: 7.0vw;
-    }
-    header>p{
-      font-size: 33pt;
-    }
+    header{ margin-top: 7.0vw;}
 
     /*******************
     *  Gift_description
@@ -41,14 +35,11 @@
       display: inline-block;
       width: 33%;
     }
-    .gift>img{
+    .gift>img{ /* 禮物照片 */
       width: 100%;
       height: 100%;
     }
-    #gift_description>p{
-      font-size: 25pt;
-    }
-    .bullet{
+    .bullet{ /* 項目符號 */
       display: inline-block;
       color: white;
       background-color: rgb(177, 175, 175);
@@ -64,15 +55,9 @@
     /*******************
     *  Sign up ads
     ********************/
-    #motivate_text{
-      margin: 6vw 0;
-    }
+    #motivate_text{ margin: 6vw 0;}
 
-    #motivate_text>p{
-      font-size: 25pt;
-      font-weight: bold;
-    }
-    #sign_up{
+    #sign_up{ 
       color: red;
       text-decoration: none;
     }
@@ -81,12 +66,7 @@
     /**********
     *  Footer
     ***********/
-    footer>p{
-      font-size: 25pt;
-    }
-    #cover{
-      width: 60%;
-    }
+    #cover{ width: 60%;}
 
     </style>
 </head>
@@ -95,15 +75,15 @@
       <!-- Header -->
       <header id='header'>
         <!-- Top description -->
-        <p>親愛的<span class="custom">{{receiver}}</span><br>
+        <h1>親愛的<span class="custom">{{receiver}}</span><br>
         有一位與您認識2年的<span class="custom">{{sender}}</span><br>
-        為您捎來一封禮物調查信 !</p>
+        為您捎來一封禮物調查信 !</h1>
       </header>
       
 
       <!-- Gift description -->
       <div id='gift_description'>
-        <p>他想要請您從精心篩選的三樣禮物中，挑選一樣。</p><br>
+        <h2>他想要請您從精心篩選的三樣禮物中，挑選一樣。</h2><br>
         <!-- Gift chioces -->
         <div class="gift_list">
           <div class="gift">
@@ -120,22 +100,22 @@
           </div>
         </div>
         <!-- Gift after-text -->
-        <p>此外，他也想對您說：「<span class="custom">白痴喔</span>」</p>
+        <h2>此外，他也想對您說：「<span class="custom">白痴喔</span>」</h2>
       </div>
         
       <!-- Sign up ads -->
       <div id='motivate_text'>
-        <p><b>
+        <h2><b>
           想知道他到底寫了些什麼嗎 ?<br>
           快 <a id="sign_up" href="https://www.google.com">點這裡</a> 註冊心禮系帳號，查看完整內容並回覆，<br>
           繫起心與心的距離！
-        </b></p>
+        </h2></p>
       </div>
         
       <!-- Footer -->
         <footer>
-          <p>心禮系是一個幫助您匿名調查禮物需求的網站，<br>
-          希望藉由科技拉近人與人間的距離。</p>
+          <h3>心禮系是一個幫助您匿名調查禮物需求的網站，<br>
+          希望藉由科技拉近人與人間的距離。</h3>
           <img id="cover" src="./questionnaire-resource/img/cover.svg" alt="">
         </footer>
       </footer>
