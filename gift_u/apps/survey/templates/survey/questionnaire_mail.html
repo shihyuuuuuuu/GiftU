@@ -1,55 +1,126 @@
 <!DOCTYPE html>
 <html>
-    <head>
-     <!-- Compiled and minified CSS -->
-       <style>
-         .container {
-           margin-top: 50px;
-           margin-bottom: 50px;
-           border: 5px solid green;
-         }
-         
-         .flex-container {
-           display: flex
-         }
-         
-         .row {
-           border: 5px solid red;
-         }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Compiled and minified CSS -->
+    <style>
+      /* Deprecated : 
+      @font-face {
+        font-family: NotoSans;
+        src: url(./questionnaire-resource/fonts/NotoSansCJKtc-Regular.otf);
+      } 
+      */
 
-       </style>
-    </head>
+    /**********
+    *  General
+    ***********/
+    body{
+      width: 65%;
+      margin: 0 auto;
+      background-color: rgb(243, 223, 223);
+    }
+    h1, h2, h3{
+      font-family: NotoSans;}
+
+    /* 外加內容的樣式 */
+    .custom{ color: #f7b42d;}
+
+    /**********
+    *  Header
+    ***********/
+    header{ margin-top: 7.0vw;}
+
+    /*******************
+    *  Gift_description
+    ********************/
+    .gift{
+      display: inline-block;
+      width: 33%;
+    }
+    .gift>img{ /* 禮物照片 */
+      width: 100%;
+      height: 100%;
+    }
+    .bullet{ /* 項目符號 */
+      display: inline-block;
+      color: white;
+      background-color: rgb(177, 175, 175);
+      text-align: center;
+      border-radius: 50%;
+      font-size: 1.7em;
+      width: 1.7em;
+      height: 1.7em;
+      line-height: 1.7em;
+      margin: 0 45%;
+    }
+
+    /*******************
+    *  Sign up ads
+    ********************/
+    #motivate_text{ margin: 6vw 0;}
+
+    #sign_up{ 
+      color: red;
+      text-decoration: none;
+    }
+
+
+    /**********
+    *  Footer
+    ***********/
+    #cover{ width: 60%;}
+
+    </style>
+</head>
 
     <body>
-      
-      <header class='header'>
-        親愛的{{receiver}}<br>
-        有一位與您認識2年的{{sender}}<br>
-        為您捎來一封禮物調查信
+      <!-- Header -->
+      <header id='header'>
+        <!-- Top description -->
+        <h1>親愛的<span class="custom">{{receiver}}</span><br>
+        有一位與您認識2年的<span class="custom">{{sender}}</span><br>
+        為您捎來一封禮物調查信 !</h1>
       </header>
       
 
-      <div class='container'>
-        他想要請您從精心篩選的三樣禮物中，挑選一樣。
-        <div class="flex-container">
-          <div class='row'>1</div>
-          <div class='row'>2</div>
-          <div class='row'>3</div>
+      <!-- Gift description -->
+      <div id='gift_description'>
+        <h2>他想要請您從精心篩選的三樣禮物中，挑選一樣。</h2><br>
+        <!-- Gift chioces -->
+        <div class="gift_list">
+          <div class="gift">
+            <div class="bullet">1</div><br>
+            <img src="https://drive.google.com/open?id=1JF0SNSnkq8vmvnGt3gDOp4VFDyX4oq5A" alt="" srcset="">
+          </div>
+          <div class="gift">
+            <div class="bullet">2</div><br>
+            <img src="./questionnaire-resource/img/blur2.svg" alt="" srcset="">
+          </div>
+          <div class="gift">
+            <div class="bullet">3</div><br>
+            <img src="./questionnaire-resource/img/blur3.svg" alt="" srcset="">
+          </div>
         </div>
-        此外，他也想對您說：「白痴喔」
+        <!-- Gift after-text -->
+        <h2>此外，他也想對您說：「<span class="custom">白痴喔</span>」</h2>
       </div>
         
-      <footer class='footer'>
-        <div class='container'>
-          想知道他到底寫了些什麼嗎<br>
-          快<a href="https://www.google.com"></a>>點這裡</a>註冊心禮系帳號，查看完整內容並回覆，<br>
+      <!-- Sign up ads -->
+      <div id='motivate_text'>
+        <h2><b>
+          想知道他到底寫了些什麼嗎 ?<br>
+          快 <a id="sign_up" href="https://www.google.com">點這裡</a> 註冊心禮系帳號，查看完整內容並回覆，<br>
           繫起心與心的距離！
-         </div>
+        </h2></p>
+      </div>
         
-        <div class='container'>
-          心禮系是一個幫助您匿名調查禮物需求的網站，<br>
-          希望藉由科技拉近人與人間的距離。
-        </div>
+      <!-- Footer -->
+        <footer>
+          <h3>心禮系是一個幫助您匿名調查禮物需求的網站，<br>
+          希望藉由科技拉近人與人間的距離。</h3>
+          <img id="cover" src="./questionnaire-resource/img/cover.svg" alt="">
+        </footer>
       </footer>
     </body>
 </html>
