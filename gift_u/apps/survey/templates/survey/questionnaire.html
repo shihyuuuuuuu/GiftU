@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <header class="page-header">
+        <h3>信件內容</h3>
+        <br>
+    </header>
+    <div class="row">
+        <div class="col s12">
+            <ul class="tabs">
+            <li class="tab col s3 offset-s3"><a class="active" href="#questionnaire">問卷</a></li>
+            <li class="tab col s3"><a href="#response">回覆</a></li>
+            </ul>
+        </div>
+        <div id="questionnaire" class="col s12">
+            <fieldset disabled="disabled">
+                <h3>問題</h3>
+
+                {{questionnaire_form.as_p}}
+    
+                <h3>選項</h3>
+                {{choice_formset.as_p}}
+            </fieldset>
+        </div>
+        <div id="response" class="col s12">對方還沒回覆唷！</div>
+        </div>
+    
+      
+ {% endblock %}
+
+ {% block scripts %}
+    {{ block.super }}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // For Materialized tab
+            $('.tabs').tabs();
+        });
+    </script>
+{% endblock %}

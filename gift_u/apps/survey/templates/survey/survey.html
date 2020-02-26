@@ -2,22 +2,11 @@
 {% load static %}
 
 {% block content %}
-<header class="page-header"></header>
-    <h3>『 Hi, 開始寫信給對方吧！ 』</h3>
-    <br>
-</header>
-
-    {% if read_only %}
-        <fieldset disabled="disabled">
-            <h3>問題</h3>
-            {{questionnaire_form.as_p}}
-
-            <h3>選項</h3>
-            {{choice_formset.as_p}}
-        </fieldset>
-
-    {% else %}
-        <form method="post">
+    <header class="page-header">
+        <h3>『 Hi, 開始寫信給對方吧！ 』</h3>
+        <br>
+    </header>
+        <form id="questionnaire_form" method="post">
                 <fieldset>
                 {% csrf_token %}
                 <!-- Q1 -->
@@ -60,7 +49,48 @@
                 <button class="btn waves-effect waves-light" type="submit">寄出</button>
             </fieldset>
         </form>
-    {% endif %}
+ {% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            var questionnaire_form = document.querySelector('#questionnaire_form')
+            
+            // If questionnaire_form Start:
+            if(questionnaire_form){
+                questionnaire_form.addEventListener('submit', function(e) {
+                var form = this;
+
+                e.preventDefault(); // <--- prevent form from submitting
+
+                swal({
+                    title: "Are you sure?",
+                    text: "You will not be able to recover this imaginary file!",
+                    icon: "warning",
+                    buttons: [
+                        'No, cancel it!',
+                        'Yes, I am sure!'
+                    ],
+                    dangerMode: true,
+                    }).then(function(isConfirm) {
+                    if (isConfirm) {
+                        swal({
+                        title: 'Shortlisted!',
+                        text: 'Candidates are successfully shortlisted!',
+                        icon: 'success'
+                        }).then(function() {
+                        form.submit(); // <--- submit form programmatically
+                        });
+                    } else {
+                        swal("Cancelled", "Your imaginary file is safe :)", "error");
+                    }
+                    })
+                
+                });
+            } // If questionnaire_form End
+
+        });
+    </script>
 {% endblock %}
-<script>
-</script>
