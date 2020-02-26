@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 # models
-from .models import Questionnaire, ChoiceQuestion, Choice
+from .models import Questionnaire, ChoiceQuestion, Choice, AnswerSheet, ChoiceAnswer
 # views
 from django.views.generic import View
 # forms
-from .forms import QuestionnaireForm, ChoiceQuestionForm, ChoiceFormset
+from .forms import QuestionnaireForm, ChoiceQuestionForm, ChoiceFormset, AnswerSheetForm
 
 # For email
 from django.conf import settings
@@ -17,11 +17,11 @@ class SurveyView(View):
         
         # Empty questionnaire
         questionnaire_form = QuestionnaireForm(prefix='questionnaire')
-        choice_formset = ChoiceFormset(prefix='choice')
+        choice_formset = ChoiceFormset(prefix='choice', initial=[
+            {'order_in_list':i+1} for i in range(3)])
         context = {
             'questionnaire_form':questionnaire_form,
             'choice_formset':choice_formset,
-            'read_only': False
         }
         return render(request, 'survey/survey.html', context)
 
@@ -40,6 +40,9 @@ class SurveyView(View):
             if choice_formset.is_valid():
                 choice_formset.save()
                 self.send_email(current_user.username, questionnaire.receiver_nickname)
+                
+                # Create an empty answersheet for future response
+                answersheet = AnswerSheet.objects.create(questionnaire=questionnaire)
                 return redirect('/', {})
         else:
             print("Questionnaire %s submit failed ! "%questionnaire.id)
@@ -81,29 +84,62 @@ class QuestionnaireView(View):
         return render(request, 'survey/questionnaire.html', context)
             
 
-    def post(self, request):
+    def post(self, request, questionnaire_id=''):
         current_user = request.user
-        questionnaire_form = QuestionnaireForm(request.POST, prefix='questionnaire', initial={'creator':current_user})
+        questionnaire = Questionnaire.objects.filter(id=questionnaire_id).get()
 
-        return redirect('/survey/')
+        ## Parse data
+        choice_pk = request.POST.get('answersheet-choices')
+        extra_messages = request.POST.get('answersheet-extra_messages')
+
+
+        answer_sheet = AnswerSheet.objects.filter(questionnaire=questionnaire).get() ##
+        answer_sheet.extra_messages = extra_messages
+        answer_sheet.done = True
+        answer_sheet.save()
+
+        choice = Choice.objects.filter(pk=choice_pk).get()
+        choice_answer = ChoiceAnswer.objects.create(
+            answer_sheet=answer_sheet,
+            choice_question=choice.choice_question,
+            choice=choice
+        )
+
+        questionnaire.is_responded = True
+        questionnaire.save()
+
+        return redirect('/accounts/dashboard')
     
     def get_questionnaire_with_id(self, current_user, questionnaire_id):
         questionnaire = Questionnaire.objects.filter(id=questionnaire_id).get()
         
         context = {}
+
         # Check authorized
-        if (current_user == questionnaire.creator or
-        current_user.email == questionnaire.receiver_email):
-            questionnaire_form = QuestionnaireForm(prefix='questionnaire', instance=questionnaire)
+        if (current_user.email != questionnaire.creator.email and current_user.email != questionnaire.receiver_email):
+            return context
+        
+        questionnaire_form = QuestionnaireForm(prefix='questionnaire', instance=questionnaire)
+        choice_question = ChoiceQuestion.objects.filter(questionnaire=questionnaire).get()
+        choice_formset = ChoiceFormset(prefix='choice', instance=choice_question)
 
-            choice_question = ChoiceQuestion.objects.filter(questionnaire=questionnaire).get()
-            choice_formset = ChoiceFormset(prefix='choice', instance=choice_question)
+        answersheet = AnswerSheet.objects.filter(questionnaire=questionnaire).get()
+        choice_answer = ''
 
-            context = {
-                'questionnaire_form':questionnaire_form,
-                'choice_formset':choice_formset,
-                'read_only': True,
-            }
+        if questionnaire.is_responded:
+            choice_answer = ChoiceAnswer.objects.filter(choice_question=choice_question).get()
+            answersheet_form = AnswerSheetForm(questionnaire=questionnaire, prefix='answersheet')
+        else:
+            answersheet_form = AnswerSheetForm(questionnaire=questionnaire, prefix='answersheet' )
+
+        context = {
+            'questionnaire':questionnaire,
+            'questionnaire_form':questionnaire_form,
+            'choice_formset':choice_formset,
+            'answersheet':answersheet,
+            'answersheet_form':answersheet_form,
+            'choice_answer':choice_answer,
+        }
         return context
 
 # def index(request):

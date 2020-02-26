@@ -5,7 +5,7 @@ from django.conf import settings
 
 class Questionnaire(models.Model):
     def __str__(self):
-        return self.title
+        return self.title+str(self.id)+'(by:'+self.creator.username+')'
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     title = models.CharField(max_length=200, default='匿名信件')
 
@@ -40,6 +40,7 @@ class Questionnaire(models.Model):
     # - should be sent to one reciever (also an User).(but it might not yet registered!)
     ##
     # receiver = models.OneToOneField(User, on_delete=models.CASCADE)
+    is_responded = models.BooleanField(verbose_name="是否收到回覆", default=False, blank=True)
 
 
 # Abstract class! (Only for inheritance)
@@ -68,7 +69,7 @@ class ChoiceQuestion(Question):
 class Choice(models.Model):
     """選擇題的選項"""
     def __str__(self):
-        return str(self.order_in_list) + '.' + self.choice_text
+        return self.choice_text
     choice_question = models.ForeignKey(ChoiceQuestion, on_delete=models.CASCADE, default=3)
     choice_text = models.CharField(max_length=50, verbose_name="選項")
     order_in_list = models.IntegerField(default=1)
@@ -83,6 +84,33 @@ class Choice(models.Model):
 #     FILE_QUESTION_TYPE = 1
 #     type = models.SmallIntegerField(verbose_name="主觀題型別", choices=( (TEXT_QUESTION_TYPE, '問答題'), (FILE_QUESTION_TYPE, '檔案題') ), default=0)
     
-    
+
+class AnswerSheet(models.Model):
+    """答卷"""
+    def __str__(self):
+        return 'A:'+self.questionnaire.title+'(by:'+self.creator.username+')'
+    creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True, default=1)
+
+    questionnaire = models.OneToOneField(Questionnaire, on_delete=models.CASCADE) # 對應一份問卷
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+
+    # # 選擇題
+    # choice_question = models.ForeignKey(ChoiceQuestion, on_delete=models.CASCADE, related_name="single_choice_answers", blank=True) # 對應一份問卷
+
+    # 回覆一些文字給他吧？
+    extra_messages = models.CharField(verbose_name="回覆一些文字給他吧", max_length=200, default='', blank=True)
+
+    # 乙回覆過了沒
+    done = models.BooleanField(default=False, help_text="乙完成回覆")
+
+class Answer(models.Model):
+    """答案的基類"""
+    answer_sheet = models.ForeignKey(AnswerSheet, on_delete=models.CASCADE)
+    class Meta:abstract = True
+
+class ChoiceAnswer(Answer):
+    """單選題的答案"""
+    choice_question = models.OneToOneField(ChoiceQuestion, on_delete=models.CASCADE, related_name="對應的題目")
+    choice = models.OneToOneField(Choice, on_delete=models.CASCADE, related_name="single_choice_answers") # 單選題
 
 

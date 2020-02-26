@@ -5,5 +5,5 @@ from .models import *
 
 admin.site.register(Questionnaire)
 admin.site.register(ChoiceQuestion)
-admin.site.register(Choice)
-
+admin.site.register(AnswerSheet)
+admin.site.register(ChoiceAnswer)
