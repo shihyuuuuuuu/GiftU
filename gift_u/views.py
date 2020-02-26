@@ -38,7 +38,14 @@ def profile(request):
 
 def dashboard(request):
     current_user = request.user 
+    # 寄件匣
     questionnaires = Questionnaire.objects.filter(creator=current_user)
-    return render(request, 'dashboard.html', {'questionnaires':questionnaires} )
+    # 收件匣
+    receive_questionnaires = Questionnaire.objects.filter(receiver_email=current_user.email)
+    context={
+        'questionnaires':questionnaires,
+        'receive_questionnaires':receive_questionnaires
+    }
+    return render(request, 'dashboard.html', context)
 
     

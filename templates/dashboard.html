@@ -9,14 +9,17 @@
 <div class="container">
     <h1>信件總覽</h1>
 
+    <!-- 寄件箱 開始-->
     <table class="highlight centered">
+        <h3>已寄出信件</h3>
         <thead>
           <tr>
               <th>收禮者的email</th>
               <th>收禮者的暱稱</th>
               <th>...</th>
               <th>還想對他/她說些什麼嗎？</th>
-              <th></th>
+              <th>連結</th>
+              <th>信件狀態</th>
           </tr>
         </thead>
 
@@ -28,10 +31,55 @@
                 <td></td>
                 <td>{{questionnaire.extra_messages}}</td>
                 <td><a href="{% url 'survey:questionnaire' questionnaire_id=questionnaire.id %}">查看</a></td>
+                {% if questionnaire.is_responded%}
+                <td>收到回覆(v)</td>
+                {% else %}
+                <td>對方尚未答覆</td>
+                {% endif %}
+               
+
             </tr>
              {% endfor %}
         </tbody>
       </table>
+    <!-- 寄件箱 結束-->
+
+    <!-- 收件箱 開始-->
+      <table class="highlight centered">
+        <h3>收件箱</h3>
+        <thead>
+          <tr>
+              <th>送信者的email</th>
+              <th>送信者的暱稱</th>
+              <th>...</th>
+              <th>他想對你說的話</th>
+              <th>連結</th>
+              <th>信件狀態</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            {% for receive_questionnaire in receive_questionnaires %}
+            <tr data-href='https://www.google.com'>
+                <td>{{receive_questionnaire.creator.username}}</td>
+                <td>{{receive_questionnaire.sender_nickname}}</td>
+                <td></td>
+                <td>{{receive_questionnaire.extra_messages}}</td>
+                <td><a href="{% url 'survey:questionnaire' questionnaire_id=receive_questionnaire.id %}">查看</a></td>
+                {% if receive_questionnaire.is_responded%}
+                <td>已回覆(v)</td>
+                {% else %}
+                <td>您尚未答覆</td>
+                {% endif %}
+
+
+            </tr>
+             {% endfor %}
+        </tbody>
+
+      </table>
+    <!-- 收件箱 結束-->
+    
 </div>
 {% endblock %}
 

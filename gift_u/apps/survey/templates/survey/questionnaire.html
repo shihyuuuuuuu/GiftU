@@ -9,10 +9,11 @@
     <div class="row">
         <div class="col s12">
             <ul class="tabs">
-            <li class="tab col s3 offset-s3"><a class="active" href="#questionnaire">問卷</a></li>
+            <li class="tab col s3 offset-s3"><a class="active" href="#questionnaire">信件內容</a></li>
             <li class="tab col s3"><a href="#response">回覆</a></li>
             </ul>
         </div>
+        <!-- 問卷內容 -->
         <div id="questionnaire" class="col s12">
             <fieldset disabled="disabled">
                 <h3>問題</h3>
@@ -22,8 +23,62 @@
                 {{choice_formset.as_p}}
             </fieldset>
         </div>
-        <div id="response" class="col s12">對方還沒回覆唷！</div>
+        <!-- 回覆 -->
+        <div id="response" class="col s12">
+            <!-- 甲的頁面 -->
+            {% if user.email ==  questionnaire.creator.email and not answersheet.done %}
+                <div>對方還沒回覆唷！</div>
+            
+            <!-- 乙的頁面 -->
+            {% elif user.email ==  questionnaire.receiver_email and not answersheet.done %}
+                <div>您還沒回覆唷！</div>
+                    <form method="POST" action="">
+                        <fieldset>
+                            {% csrf_token %}
+                            <h3>親愛的：{{questionnaire_form.sender_nickname.value}}</h3>
+                            {{answersheet_form.as_p}}
+                            <button class="btn waves-effect waves-light" type="submit">回覆</button>
+                        </fieldset>
+                    </form>
+                </div>
+            
+            <!-- 回覆後的頁面 -->
+            {% else %}
+                <fieldset disabled="disabled">
+                    {% csrf_token %}
+                    <h4 style="margin: 3rem 0 3rem 0;">親愛的：<span class="pink-text text-lighten-3">{{questionnaire_form.sender_nickname.value}}</span></h4>
+                    <div>
+                        <blockquote>以下是選擇：</blockquote>
+                        <div class="row">
+                            {% for choice in choice_formset %}
+                                {% if choice_answer.choice.choice_text == choice.choice_text.value %}
+                                <div class="col s3 card yellow lighten-4">
+                                    <div>
+                                        <h5 class="center-align">{{ choice.choice_text.value }}</h5>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div class="col s3 card">
+                                    <div>
+                                        <h5 class="center-align">{{ choice.choice_text.value }}</h5>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div>
+                        <blockquote>想說的話：</blockquote>
+                        <textarea>
+                            {{answersheet.extra_messages}}
+                        </textarea>
+
+                        <button class="btn waves-effect waves-light" type="submit">回覆</button>
+                    </div>
+                </fieldset>
+            {% endif %}
         </div>
+    </div>
     
       
  {% endblock %}
@@ -32,8 +87,12 @@
     {{ block.super }}
     <script type="text/javascript">
         $(document).ready(function() {
-            // For Materialized tab
+            // For Materialized
             $('.tabs').tabs();
+            $('select').formSelect();
+
+
+
         });
     </script>
 {% endblock %}
