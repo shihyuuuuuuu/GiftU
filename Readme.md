@@ -47,5 +47,5 @@ python manage.py runserver
 
 ## Login 
 
-Test account:test2 <br>
-password:abcd12345678
+Test account : test2 <br>
+Password : abcd12345678
