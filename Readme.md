@@ -1,4 +1,4 @@
-Project structure(https://web.archive.org/web/20140409085244/http://www.deploydjango.com/django_project_structure)<br>
+## Project structure(https://web.archive.org/web/20140409085244/http://www.deploydjango.com/django_project_structure)<br>
 ```
 ├── gift_u
 │   ├── apps
@@ -24,22 +24,20 @@ Project structure(https://web.archive.org/web/20140409085244/http://www.deploydj
 accout:test2
 password:abcd12345678
 
-# Setup（use virtual environment as an example）
-１. Setup virtual environment
+## Setup（use virtual environment as an example）
+### １. Setup virtual environment
 ```
 python3 -m venv venv 
 source ven/bin/activate 
 cd gift_u
 ```
-2. Install dependency
+### 2. Install dependency
 ```
 pip install -r requirements.txt
 ```
 
-3.Run local server
+### 3.Run local server
 ```
 python manage.py runserver
 ```
-
-** If you have any problems, please 
 
