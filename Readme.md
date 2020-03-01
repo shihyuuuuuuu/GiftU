@@ -1,4 +1,5 @@
 # GiftU
+A website that provides service for connecting with your old friends! A registered user can fill out an survey with three options and warm messages, which will later transform to an email and send to your friends; your friends can also select an option and send it back to you.
 
 ## Project structure
 （參考：https://web.archive.org/web/20140409085244/http://www.deploydjango.com/django_project_structure)<br>
@@ -23,6 +24,7 @@
 └── requirements.txt
 ```
 
+
 ## Setup（use virtual environment as an example）
 ### １. Setup virtual environment
 ```
@@ -39,8 +41,12 @@ pip install -r requirements.txt
 ```
 python manage.py runserver
 ```
+
+
+
+
 ## Login 
 
 測試帳號 Test account
-accout:test2
+accout:test2 <br>
 password:abcd12345678
