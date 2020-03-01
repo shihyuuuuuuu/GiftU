@@ -1,4 +1,24 @@
-參考專案架構structure：https://web.archive.org/web/20140409085244/http://www.deploydjango.com/django_project_structure<br>
+Project structure(https://web.archive.org/web/20140409085244/http://www.deploydjango.com/django_project_structure)<br>
+```
+├── gift_u
+│   ├── apps
+│   │   ├── survey
+        │   ├── static/survey
+        │   ├── templates/survey
+            │   ├── questionnaire.html
+            │   ├── questionnaire_mail.html
+            |   └── survey.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── manage.py
+├── templates
+│   ├── base.html
+│   ├── dashboard.html
+│   ├── homepage.html
+│   └── profile.html
+└── requirements.txt
+```
 
 測試帳號
 1. test2/abcd12345678
