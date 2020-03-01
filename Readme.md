@@ -47,6 +47,5 @@ python manage.py runserver
 
 ## Login 
 
-測試帳號 Test account
-accout:test2 <br>
+Test account:test2 <br>
 password:abcd12345678
