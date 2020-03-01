@@ -25,7 +25,7 @@ A website that provides service for connecting with your old friends! A register
 ```
 
 
-## Setup（use virtual environment as an example）
+## Setup（take virtual environment as an example）
 ### １. Setup virtual environment
 ```
 python3 -m venv venv 
