@@ -23,10 +23,6 @@
 └── requirements.txt
 ```
 
-測試帳號 Test account
-accout:test2
-password:abcd12345678
-
 ## Setup（use virtual environment as an example）
 ### １. Setup virtual environment
 ```
@@ -43,4 +39,8 @@ pip install -r requirements.txt
 ```
 python manage.py runserver
 ```
+## Login 
 
+測試帳號 Test account
+accout:test2
+password:abcd12345678
