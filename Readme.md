@@ -20,24 +20,26 @@ Project structure(https://web.archive.org/web/20140409085244/http://www.deploydj
 └── requirements.txt
 ```
 
-測試帳號
-1. test2/abcd12345678
+測試帳號 Test account
+accout:test2
+password:abcd12345678
 
-# 如何跑起來（以虛擬環境為例）
-１.在根目錄建立虛擬環境
+# Setup（use virtual environment as an example）
+１. Setup virtual environment
 ```
 python3 -m venv venv 
 source ven/bin/activate 
 cd gift_u
 ```
-2.安裝套件
+2. Install dependency
 ```
 pip install -r requirements.txt
 ```
 
-3.跑local server
+3.Run local server
 ```
 python manage.py runserver
 ```
 
+** If you have any problems, please 
 
