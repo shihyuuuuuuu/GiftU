@@ -99,8 +99,8 @@ DATABASES = {
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'giftu_db',
-        'USER': 'admin',
-        'PASSWORD': 'admin',
+        'USER': 'postgres',
+        'PASSWORD': 'davidck12624',
         'HOST': 'localhost', # Todo: Should be changed to real DB service
     }
 }
@@ -148,8 +148,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
      os.path.join(BASE_DIR, "static"),
 ]
-
-
 
 ## For allauth's settings
 ACCOUNT_EMAIL_REQUIRED = True

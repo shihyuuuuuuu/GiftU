@@ -32,7 +32,7 @@
     p.p_h3{font-size: 12pt;}
 
     /* 外加內容的樣式 */
-    .custom{ color: #f7b42d;}
+    .custom{ color: #fcb321;}
 
     /**********
     *  Header
@@ -82,16 +82,25 @@
     ********************/
     #motivate_text{ margin: 6vw 0;}
 
-    #sign_up{ 
-      color: red;
+    .link{
       text-decoration: none;
+      border-bottom: 1px solid;
+      font-style: italic;
+      font-weight: bold;
+    }
+    .link:hover{ text-decoration: none;} 
+    #sign_up{ color: red;}
+    #giftU_fanspage{ 
+      color: rgb(172, 6, 172);
+      background-color: rgb(245, 207, 248);
+      padding: 1px;
     }
 
 
     /**********
     *  Footer
     ***********/
-    #cover{ width: 60%;}
+    /* #cover{ width: 60%;} */
 
     </style>
 </head>
@@ -128,23 +137,26 @@
           </div>
         </div>
         <!-- Gift after-text -->
-        <p class="p_h2">此外，他也想對您說：「<span class="custom">白痴喔</span>」</p>
+        <p class="p_h2">此外，他也想對您說：「<span class="custom">{{message}}</span>」</p>
       </div>
         
       <!-- Sign up ads -->
       <div id='motivate_text'>
         <p class="p_h2"><b>
           想知道他到底寫了些什麼嗎 ?<br>
-          快 <a id="sign_up" href="https://www.google.com">點這裡</a> 註冊心禮系帳號，查看完整內容並回覆，<br>
+          快 <a id="sign_up" class="link" href="https://www.google.com">點這裡</a>  註冊心禮系帳號，查看完整內容並回覆，<br>
           繫起心與心的距離！
         </p></p>
       </div>
         
       <!-- Footer -->
         <footer>
-          <p class="p_h3">心禮系是一個幫助您匿名調查禮物需求的網站，<br>
-          希望藉由科技拉近人與人間的距離。</p>
-          <div class="pseudo_img" style="width: 30vw; margin: auto 0;"></div>
+          <p class="p_h2">
+            <a id="giftU_fanspage" class="link" href="https://www.facebook.com/%E5%BF%83%E7%A6%AE%E7%B3%BB-100569691443651/">
+              心禮系</a> 是一個幫助您匿名調查禮物需求的網站，<br>
+            希望藉由科技拉近人與人間的距離。
+          </p>
+          <!-- <div class="pseudo_img" style="width: 30vw; margin: auto 0;"></div> -->
           <!-- <img id="cover" src="{% static "gift_u/survey/img/text.png" %}" alt="cover"> -->
       </footer>
       <br><br>

@@ -39,29 +39,47 @@ class SurveyView(View):
             choice_formset = ChoiceFormset(request.POST, prefix='choice', instance=choice_question)
             if choice_formset.is_valid():
                 choice_formset.save()
+<<<<<<< Updated upstream
                 self.send_email(current_user.username, questionnaire.receiver_nickname)
                 
                 # Create an empty answersheet for future response
                 answersheet = AnswerSheet.objects.create(questionnaire=questionnaire)
+=======
+
+                # shanpig : Add data format sent to send_email()
+                data = [
+                    questionnaire.receiver_email,       #收信人信箱
+                    questionnaire.sender_nickname,      #寄信人
+                    questionnaire.receiver_nickname,    #收信人
+                    questionnaire.extra_messages,       #想說的話
+                    ]
+
+                # self.send_email(current_user.username, questionnaire.receiver_nickname)
+                self.send_email(data)
+>>>>>>> Stashed changes
                 return redirect('/', {})
         else:
             print("Questionnaire %s submit failed ! "%questionnaire.id)
         return redirect('/survey/')
     
-    def send_email(self, sender, receiver):
+    def send_email(self, data): # sender receiver
         from django.template.loader import render_to_string
         from django.utils.html import strip_tags
         
         subject = "Email testing!"
         html_context = {
-            'sender':sender,
-            'receiver':receiver
+            # 'sender':sender,
+            # 'receiver':receiver
+            'sender' : data[1],
+            'receiver' : data[2],
+            'message' : data[3]
         }
         html_message = render_to_string('survey/questionnaire_mail.html', html_context)
         plain_message = strip_tags(html_message)
         
         from_email = settings.EMAIL_HOST_USER
-        to_email = 'b05901018@ntu.edu.tw'
+        # to_email = 'b05203008@ntu.edu.tw'
+        to_email = data[0]
         if subject and html_message and from_email:
             try:
                 send_mail(subject, plain_message, from_email, [to_email], False, html_message=html_message)

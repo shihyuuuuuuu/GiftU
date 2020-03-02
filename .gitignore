@@ -1,3 +1,10 @@
+.gitignore
 *.pyo
 *.pyc
 __pycache__/
+requirements.txt
+/loginView/changes.txt
+/gift_u/settings.py
+/gift_u/apps/survey/templates/survey/test.html
+/gift_u/apps/survey/views.py
+/gift_u/settings.py
