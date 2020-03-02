@@ -39,12 +39,12 @@ class SurveyView(View):
             choice_formset = ChoiceFormset(request.POST, prefix='choice', instance=choice_question)
             if choice_formset.is_valid():
                 choice_formset.save()
-<<<<<<< Updated upstream
-                self.send_email(current_user.username, questionnaire.receiver_nickname)
+# <<<<<<< Updated upstream
+#                 self.send_email(current_user.username, questionnaire.receiver_nickname)
                 
-                # Create an empty answersheet for future response
-                answersheet = AnswerSheet.objects.create(questionnaire=questionnaire)
-=======
+#                 # Create an empty answersheet for future response
+#                 answersheet = AnswerSheet.objects.create(questionnaire=questionnaire)
+# =======
 
                 # shanpig : Add data format sent to send_email()
                 data = [
@@ -56,7 +56,7 @@ class SurveyView(View):
 
                 # self.send_email(current_user.username, questionnaire.receiver_nickname)
                 self.send_email(data)
->>>>>>> Stashed changes
+# >>>>>>> Stashed changes
                 return redirect('/', {})
         else:
             print("Questionnaire %s submit failed ! "%questionnaire.id)
