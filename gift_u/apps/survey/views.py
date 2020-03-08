@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 # models
 from .models import Questionnaire, ChoiceQuestion, Choice, AnswerSheet, ChoiceAnswer
 # views
 from django.views.generic import View
 # forms
 from .forms import QuestionnaireForm, ChoiceQuestionForm, ChoiceFormset, AnswerSheetForm
+
 
 # For email
 from django.conf import settings
@@ -75,9 +78,12 @@ class SurveyView(View):
 
         return False
 
-class QuestionnaireView(View):
+class QuestionnaireView(LoginRequiredMixin, View):
+    login_url = 'account_login'
+    
     def get(self, request, questionnaire_id=''):
         current_user = request.user
+        context={}
         
         # Get user's specific questionnaire
         context = self.get_questionnaire_with_id(current_user, questionnaire_id)
