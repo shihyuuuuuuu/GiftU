@@ -145,9 +145,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # You may have static assets that aren’t tied to a particular app; Django will also look for static files here
-STATICFILES_DIRS = [
-     os.path.join(BASE_DIR, "static"),
-]
+# STATICFILES_DIRS = [
+#      os.path.join(BASE_DIR, "static"),
+# ]
+
+# Deployment settings
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 
