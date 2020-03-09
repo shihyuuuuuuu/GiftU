@@ -153,6 +153,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 DEBUG = False
 ALLOWED_HOSTS = ['giftu.herokuapp.com']
+SITE_ID = 2
 
 
 
@@ -180,6 +181,3 @@ AUTHENTICATION_BACKENDS = [
         'django.contrib.auth.backends.ModelBackend',
         'allauth.account.auth_backends.AuthenticationBackend',
 ]
-SITE_ID = 1
-# SOCIAL_AUTH_FACEBOOK_KEY = 2248497962110198        # App ID
-# SOCIAL_AUTH_FACEBOOK_SECRET = 'c8a17f2f8baa3c584d7f55e6dfcb75d5'  # App Secret
