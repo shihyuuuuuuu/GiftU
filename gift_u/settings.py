@@ -152,7 +152,7 @@ STATIC_URL = '/static/'
 # Deployment settings
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 DEBUG = False
-ALLOWED_HOSTS = ['https://giftu.herokuapp.com/']
+ALLOWED_HOSTS = ['giftu.herokuapp.com']
 
 
 
