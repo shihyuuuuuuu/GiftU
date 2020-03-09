@@ -1,25 +1,51 @@
-參考structure：https://web.archive.org/web/20140409085244/http://www.deploydjango.com/django_project_structure<br>
+# GiftU
+A website that provides service for connecting with your old friends! A registered user can fill out surveys with three options and warm messages, which will later transform to an email and send to your friends; your friends can also select an option and send it back to you.
 
-測試帳號
-1. test2/abcd12345678
-2. 
+## Project structure
+（參考：https://web.archive.org/web/20140409085244/http://www.deploydjango.com/django_project_structure)<br>
+```
+├── gift_u
+│   ├── apps
+│   │   ├── survey
+        │   ├── static/survey
+        │   ├── templates/survey
+            │   ├── questionnaire.html
+            │   ├── questionnaire_mail.html
+            |   └── survey.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── manage.py
+├── templates
+│   ├── base.html
+│   ├── dashboard.html
+│   ├── homepage.html
+│   └── profile.html
+└── requirements.txt
+```
 
-# Day2
-- postgresql setup
-- Create app: survey
-- Demo done: /survey/demo (extend templates)
 
-# Day3
-- material CSS：https://materializecss.com/grid.html
-- 教學：https://www.youtube.com/watch?v=a3d_nyccpM8
- 
-Todo:
-- Form
-- app level v.s project level structure
-- MVC
-- DRF(restful framework)
-- *Reusable Apps
+## Setup（take virtual environment as an example）
+### １. Setup virtual environment
+```
+python3 -m venv venv 
+source ven/bin/activate 
+cd gift_u
+```
+### 2. Install dependency
+```
+pip install -r requirements.txt
+```
 
-# Day3
+### 3.Run local server
+```
+python manage.py runserver
+```
 
 
+
+
+## Login 
+
+Test account : test2 <br>
+Password : abcd12345678
