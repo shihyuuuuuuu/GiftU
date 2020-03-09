@@ -154,6 +154,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 DEBUG = False
 ALLOWED_HOSTS = ['giftu.herokuapp.com']
 SITE_ID = 2
+import django_heroku
+django_heroku.settings(locals())
 
 
 
