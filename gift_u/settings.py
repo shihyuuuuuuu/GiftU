@@ -29,10 +29,10 @@ sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'm5$_s9!+0rkpj!@2=%13(-g4$*)j6#tw1s0mi5x(f1f9$ma)ka'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -151,6 +151,8 @@ STATIC_URL = '/static/'
 
 # Deployment settings
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+DEBUG = False
+ALLOWED_HOSTS = ['https://giftu.herokuapp.com/']
 
 
 
