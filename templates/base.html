@@ -85,22 +85,22 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
             <li id="about_us_link" class="nav-item active">
-              <a class="nav-link" href="#about_us" onclick="{collapse()}"
+              <a class="nav-link" href="{% url 'homepage' %}#about_us" onclick="{collapse()}"
                 >關於我們 <span class="sr-only">(current)</span></a
               >
             </li>
             <li id="service_intro_link" class="nav-item">
-              <a class="nav-link" href="#service_intro" onclick="{collapse()}"
+              <a class="nav-link" href="{% url 'homepage' %}#service_intro" onclick="{collapse()}"
                 >服務介紹</a
               >
             </li>
             <li id="user_feedback_link" class="nav-item">
-              <a class="nav-link" href="#user_feedback" onclick="{collapse()}"
+              <a class="nav-link" href="{% url 'homepage' %}#user_feedback" onclick="{collapse()}"
                 >用戶回饋</a
               >
             </li>
             <li id="contact_us_link" class="nav-item">
-              <a class="nav-link" href="#contact_us" onclick="{collapse()}"
+              <a class="nav-link" href="{% url 'homepage' %}#contact_us" onclick="{collapse()}"
                 >聯絡我們</a
               >
             </li>
