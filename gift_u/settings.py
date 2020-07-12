@@ -149,6 +149,11 @@ STATICFILES_DIRS = [
      os.path.join(BASE_DIR, "static"),
 ]
 
+DEBUG = True
+SITE_ID = 1
+
+
+
 # Deployment settings
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # DEBUG = True
