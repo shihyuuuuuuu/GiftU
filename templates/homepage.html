@@ -1,14 +1,505 @@
-{% extends 'base.html' %}
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="{% static "img/logo.ico" %}" type="image/x-icon" />
+    <title>心禮系</title>
+    <meta
+      name="description"
+      content="心禮系：為你的心意加溫。目前我們提供【匿名傳情】以及【客製化卡片】兩項服務。無論是友情、愛情或親情，都能透過這種簡單的方式，讓對方感受得到你的心意！"
+    />
+    <!-- bootstrap support -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
 
-{% block content %}
-<header class="page-header">
-    <h1><a href="#">Homepage's Base!</a></h1>
-</header>
+    <!-- favicon support -->
+    <script
+      src="https://kit.fontawesome.com/df0b05341f.js"
+      crossorigin="anonymous"
+    ></script>
 
-<div class="content container">
+    <!-- self defined css -->
 
-        
-</div>
- 
-{% endblock %}
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static "css/card.css" %}">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <link rel="stylesheet" href="{% static "css/popup.css" %}">
+    <style>
+      body {
+        font-family: "Noto Sans TC", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- TODO:
+    1. 整體樣式是否有問題？
+    2. 超連結 "寄送心意" 要連哪個服務？
+    3. 卡片樣式因字數而有微調，是否要再修改？
+    4. "了解更多"按鈕移到照片右下角，是否可行？
+    5. 回饋根據內容預設兩男一女，是否可行？
+    
+  -->
+
+    <!-- Header/Navbar on top -->
+    <nav class="navbar sticky-top navbar-expand-md navbar-dark debug">
+      <a id="navbar_logo" class="navbar-brand" href="#">心禮系</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        style="margin-right: 20px;"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li id="about_us_link" class="nav-item active">
+            <a class="nav-link" href="#about_us" onclick="{collapse()}"
+              >關於我們 <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li id="service_intro_link" class="nav-item">
+            <a class="nav-link" href="#service_intro" onclick="{collapse()}"
+              >服務介紹</a
+            >
+          </li>
+          <li id="user_feedback_link" class="nav-item">
+            <a class="nav-link" href="#user_feedback" onclick="{collapse()}"
+              >用戶回饋</a
+            >
+          </li>
+          <li id="contact_us_link" class="nav-item">
+            <a class="nav-link" href="#contact_us" onclick="{collapse()}"
+              >聯絡我們</a
+            >
+          </li>
+          <li class="nav-item" style="display: flex;">
+            <button id="main_btn">
+              <a
+                class="btn_link"
+                target="_blank"
+                rel="noreferrer noopener"
+                href="https://www.surveycake.com/s/6QMz7"
+              >
+                寄送心意</a
+              >
+            </button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- 關於我們 -->
+    <div id="about_us" class="container debug">
+      <div class="row">
+        <div class="col-12 text-center logo">
+          <img
+            class="img-fluid"
+            src="{% static "img/compressed/logo.cmprs.jpg" %}"
+            alt="logo_img"
+          />
+        </div>
+      </div>
+
+      <div class="row d-flex justify-content-center text-center">
+        <div class="col-md-8 col-8">
+          <p class="h3">為你的心意加溫</p>
+          <p>
+            心禮系致力於串起人與人之間的感情。目前我們提供【匿名傳情】以及【客製化卡片】兩項服務。無論是友情、愛情或親情，都能透過這種簡單的方式，讓對方感受得到你的心意！<br /><br />不要猶豫了，現在就開始寫卡片吧！
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 text-center">
+          <button type="button" class="send_btn">
+            <a
+              class="btn_link"
+              target="_blank"
+              rel="noreferrer noopener"
+              href="https://www.surveycake.com/s/6QMz7"
+              >寄送心意</a
+            >
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 服務介紹 -->
+    <div id="service_intro" class="container-fluid debug">
+      <div class="row">
+        <div class="col-lg-4 col-sm-12 justify-content-center d-flex">
+          <div class="flip-card">
+            <div class="flip-card-inner row">
+              <div class="flip-card-front">
+                <div class="case_img col-5">
+                  <img
+                    src="{% static "img/case1_sad.cmprs.png" %}"
+                    alt=""
+                    style="width: 110px; height: 115px;"
+                  />
+                </div>
+                <div class="case_txt col-7 text-left">
+                  <p>
+                    已經曖昧好一段時間了。每一次想開口告白時，總害怕講不好、被打回票，又把告白吞回肚子裡。
+                  </p>
+                </div>
+              </div>
+              <div class="flip-card-back">
+                <div class="case_txt col-8 text-right">
+                  <p>
+                    匿名讓我更有安全感的知道她的心意。藉由第三方傳遞訊息，我更能好好、仔細的把想說的話說清楚。
+                  </p>
+                </div>
+                <div class="case_img col-4">
+                  <img
+                    src="{% static "img/case1_happy.cmprs.png" %}"
+                    alt=""
+                    style="width: 75px; height: 110px;"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12 justify-content-center d-flex">
+          <div class="flip-card">
+            <div class="flip-card-inner row">
+              <div class="flip-card-front">
+                <div class="case_img col-5">
+                  <img
+                    src="{% static "img/case2_sad.cmprs.png" %}"
+                    alt=""
+                    style="width: 90px; height: 115px;"
+                  />
+                </div>
+                <div class="case_txt col-7 text-left">
+                  <p>
+                    我們的關係並不是十分緊密，但每次看到你在社群軟體上低潮憂鬱的文字，都好想抱抱你，對你說：一切都會過去的。怕你覺得我多管閒事，只能默默在遠方看著傷心的你。
+                  </p>
+                </div>
+              </div>
+              <div class="flip-card-back">
+                <div class="case_txt col-7 text-right">
+                  <p>
+                    即使你不知道我是誰，但消除了彼此的尷尬後，匿名傳訊可以確保你收到我的關心。你不必知道我，你只需要知道，有人會接住你的。
+                  </p>
+                </div>
+                <div class="case_img col-5">
+                  <img
+                    src="{% static "img/case2_happy.cmprs.png" %}"
+                    alt=""
+                    style="width: 120px; height: 115px;"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12 justify-content-center d-flex">
+          <div class="flip-card">
+            <div class="flip-card-inner row">
+              <div class="flip-card-front">
+                <div class="case_img col-4">
+                  <img
+                    src="{% static "img/case3_sad.cmprs.png" %}"
+                    alt=""
+                    style="width: 90px; height: 115px;"
+                  />
+                </div>
+                <div class="case_txt col-8 text-left">
+                  <p>
+                    媽，母親節在即，今年依然無法回去給你慶祝。每年我都寄了你喜歡的皮夾、化妝品，也總是會在Line上噓寒問暖，但我從未好好的對你說聲謝謝。工作真的好忙，但其實，我好想仔細地對你說說話。
+                  </p>
+                </div>
+              </div>
+              <div class="flip-card-back">
+                <div class="case_txt col-7 text-right">
+                  <p>
+                    我把感謝印在卡片上寄給你。只需要填寫表單，客製化卡片就可以快速寄出。卡片讓我能說得更多、更仔細，也製造了一個好機會，讓我好好表達對你的感謝。
+                  </p>
+                </div>
+                <div class="case_img col-5">
+                  <img
+                    src="{% static "img/case3_happy.cmprs.png" %}"
+                    alt=""
+                    style="width: 85px; height: 115px;"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <br />
+      <div class="row d-flex justify-content-center">
+        <p id="case_conclusion_txt" class="col-md-8 col-10 text-center">
+          世間的所有相遇，都是久別重逢。只要你願意，關係就能被維繫，溫暖就能被傳遞。別擔心，我們的服務會為你消除掉尷尬、突兀、焦慮，把傳情變成一件簡單的事！
+        </p>
+      </div>
+    </div>
+
+    <div class="container debug">
+      <div class="row service_list_item debug">
+        <div
+          class="col-md-4 col-12 service_list_txt text-center debug"
+          style="background-color: var(--gift-yellow);"
+        >
+          <p>匿名傳情</p>
+          <hr />
+          <p style="width: 80%;">適合不方便開口、害怕當面說話的你</p>
+        </div>
+        <div class="col-md-8 col-12 service_list_img debug">
+          <img src="{% static "img/compressed/service1_img.jpg" %}" alt="" srcset="" />
+          <button
+            class="learn_more"
+            data-service_id="1"
+            onclick="{showDetail(this)}"
+          >
+            了解更多
+          </button>
+        </div>
+      </div>
+      <br /><br />
+      <div class="row service_list_item debug">
+        <div
+          class="col-md-4 col-12 service_list_txt text-center debug"
+          style="background-color: var(--gift-red);"
+        >
+          <p>手寫卡片</p>
+          <hr />
+          <p style="width: 80%;">忙碌但想用心經營情感的你</p>
+        </div>
+        <div class="col-md-8 col-12 service_list_img debug">
+          <img src="{% static "img/compressed/service2_img.jpg" %}" alt="" />
+          <button
+            class="learn_more"
+            data-service_id="2"
+            onclick="{showDetail(this)}"
+          >
+            了解更多
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="popup_bg" style="display: none;"></div>
+    <div id="popup" class="container debug" style="display: none;">
+      <div
+        class="row"
+        style="
+          height: 100%;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding: auto;
+        "
+      >
+        <div id="popup_close">X</div>
+        <div class="col-lg-5 col-md-6 col-12 text-center">
+          <img id="popup_img" src="" alt="" />
+        </div>
+        <div id="popup_txt" class="col-lg-7 col-md-6 col-12 text-left">
+          <p id="popup_intro">
+            高中神出乎！過在機寶來著弟入通過。媽形量生：了好如且養太能度，室風傳，分景光民牛說皮人先總益有學記，境能機多蘭師名現以養高三沒房品意不反了臺此毒眼空小例就南一信後進案便將弟一？陸得傳的情：愛叫小你。皮走性公入時常目不神……門推員時，見情系小連那一這得今呢以聯大分我了險，滿懷料間情看……地和去才和美同。
+          </p>
+          <hr />
+          <p id="popup_cost">
+            服務價格：NT xx 元<br />
+            服務時程：約 3-5 工作天<br />
+            服務流程：填寫表單 -> 專人聯繫 -> 線上繳費 -> 等候寄信
+          </p>
+          <button id="popup_btn" class="send_btn">
+            <a
+              target="_blank"
+              rel="noreferrer noopener"
+              href="#"
+              class="btn_link"
+              >寄送心意</a
+            >
+          </button>
+        </div>
+      </div>
+      <div id="popup_name">服務名稱</div>
+    </div>
+
+    <!-- 用戶回饋 -->
+    <div id="user_feedback" class="container debug">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-8 col-10 text-center">
+          <div class="progress">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              style="width: 70%;"
+              aria-valuenow="96"
+              aria-valuemin="0"
+              aria-valuemax="5000"
+            ></div>
+          </div>
+          <p>目前已服務了 96 個顧客</p>
+        </div>
+      </div>
+      <br />
+      <br />
+      <br />
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-8 col-10 feedback debug">
+          <img
+            class="feedback_img"
+            src="{% static "img/compressed/Boy.jpg" %}"
+            alt=""
+            srcset=""
+          />
+          <p class="feedback_txt">
+            謝謝有你們我才能傳達訊息給遙遠的她！
+          </p>
+        </div>
+      </div>
+      <br /><br />
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-8 col-10 feedback debug">
+          <img
+            class="feedback_img"
+            src="{% static "img/compressed/Boy.jpg" %}"
+            alt=""
+            srcset=""
+          />
+          <p class="feedback_txt">
+            謝謝你們！如果女友有感動到一定會再回購！
+          </p>
+        </div>
+      </div>
+      <br /><br />
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-8 col-10 feedback debug">
+          <img
+            class="feedback_img"
+            src="{% static "img/compressed/Girl.jpg" %}"
+            alt=""
+            srcset=""
+          />
+          <p class="feedback_txt">
+            當初看到時想說最近在困擾不知道送男友什麼東西，就想填寫看看（匿名服務）看到你們回寄時，真的很感動也很開心～而且信的封面很好看！
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 聯絡我們 -->
+    <div id="contact_us" class="container debug">
+      <div class="row d-flex justify-content-center">
+        <div id="contact_img" class="col-lg-2 col-md-4 col-12 text-center">
+          <img
+            class="img-fluid"
+            src="{% static "img/compressed/contact_us.cmprs.png" %}"
+            alt=""
+          />
+        </div>
+        <div id="contact_txt" class="col-lg-4 col-md-12 col-12">
+          <p>
+            如果要聯繫我們，可以填寫右方的表格，或是寄信至
+            <a
+              href="mailto:ntustartup2019@gmail.com"
+              style="text-decoration: underline; color: var(--gift-yellow);"
+              ><i>ntustartup2019@gmail.com</i></a
+            >
+            ，我們會在收到的三天內回覆您。如果是較緊急的問題，也可以到臉書粉絲專頁私訊我們，小編會盡快回復喔！
+          </p>
+          <p class="text-left">
+            <a
+              target="_blank"
+              rel="noreferrer noopener"
+              href="https://www.facebook.com/%E5%BF%83%E7%A6%AE%E7%B3%BB-100569691443651"
+              ><i class="fab fa-facebook-square icon"></i></a
+            >&nbsp
+            <a
+              target="_blank"
+              rel="noreferrer noopener"
+              href="mailto:ntustartup2019@gmail.com"
+              ><i class="fas fa-envelope-square icon"></i
+            ></a>
+          </p>
+        </div>
+        <div id="contact_form" class="col-lg-6 col-md-8 col-12">
+          <form>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">信箱</label>
+              <input
+                type="email"
+                class="form-control"
+                id="exampleFormControlInput1"
+                placeholder="此功能尚未開放！"
+                disabled
+              />
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">訊息類別</label>
+              <select
+                class="form-control"
+                id="exampleFormControlSelect1"
+                disabled
+              >
+                <option>此功能尚未開放！</option>
+                <option>此功能尚未開放！</option>
+                <option>此功能尚未開放！</option>
+                <option>此功能尚未開放！</option>
+                <option>此功能尚未開放！</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">訊息內容</label>
+              <textarea
+                class="form-control"
+                id="exampleFormControlTextarea1"
+                rows="3"
+                placeholder="此功能尚未開放！"
+                disabled
+              ></textarea>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <footer>
+        <i
+          >&copy 2020&nbsp&nbsp&nbsp心禮系&nbsp&nbsp&nbspAll rights reserved.</i
+        >
+      </footer>
+    </div>
+
+    <!-- bootstrap support -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="{% static "js/javascript.js" %}"></script>
+  </body>
+</html>
+
