@@ -14,6 +14,4 @@ urlpatterns = [
     path('<str:questionnaire_id>/', QuestionnaireView.as_view(), name='questionnaire'),
     # # ex: /survey/5/vote/
     # path('<int:question_id>/vote/', views.vote, name='vote'),
-    # Deprecated
-    # path('demo', views.demo, name='demo'),
 ]

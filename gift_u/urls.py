@@ -21,9 +21,6 @@ from . import views ## For baseDir
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='homepage'),
-    # # Deprecated
-    # path('register/',views.register, name='register'), 
-    # path('login/',views.login, name='register'),
     path('accounts',include('allauth.urls')),
     path('accounts/profile/',views.profile, name='user_profile'),
     path('accounts/dashboard/',views.dashboard, name='user_dashboard'),
