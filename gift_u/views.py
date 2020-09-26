@@ -9,7 +9,13 @@ from django.contrib.auth import login, logout, authenticate
 from survey.models import Questionnaire
 
 def index(request):
-    return render(request, 'homepage.html', locals())
+    if request.user.is_authenticated:
+        return redirect('/homepage')
+    return render(request, 'landing_page.html', locals())
+
+    
+def homepage(request):
+    return render(request, 'home_page.html', locals())
 
 
 def profile(request):
