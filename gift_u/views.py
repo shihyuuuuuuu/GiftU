@@ -14,7 +14,7 @@ def index(request):
     return render(request, 'landing_page.html', locals())
 
     
-def homepage(request):
+def home(request):
     return render(request, 'home_page.html', locals())
 
 

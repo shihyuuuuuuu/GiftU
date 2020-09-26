@@ -21,7 +21,7 @@ from . import views ## For baseDir
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='landing_page'),
-    path('homepage', views.homepage, name='homepage'),
+    path('home', views.home, name='home'),
 
     path('accounts',include('allauth.urls')),
     path('accounts/profile/',views.profile, name='user_profile'),
