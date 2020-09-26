@@ -10,7 +10,7 @@ from survey.models import Questionnaire
 
 def index(request):
     if request.user.is_authenticated:
-        return redirect('/homepage')
+        return redirect('/home')
     return render(request, 'landing_page.html', locals())
 
     
