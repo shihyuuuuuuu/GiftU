@@ -34,6 +34,13 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(",")
 
+# postgres
+POSTGRES_HOST = os.getenv("POSTGRES_HOST", "localhost")
+POSTGRES_DB = os.getenv("POSTGRES_DB", "giftu_db")
+POSTGRES_PORT = os.getenv("POSTGRES_PORT", 5432)
+POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", "admin")
+POSTGRES_USER = os.getenv("POSTGRES_USER", "admin")
+
 
 # Application definition
 
@@ -92,16 +99,21 @@ WSGI_APPLICATION = 'gift_u.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+POSTGRES_DB = "giftu_db"
+POSTGRES_USER = "admin"
+POSTGRES_PASSWORD = "admin"
+POSTGRES_HOST = "localhost"
+
 DATABASES = {
     'default': {
         ## Deprecated
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'giftu_db',
-        'USER': 'admin',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost', # Todo: Should be changed to real DB service
+        'NAME': POSTGRES_DB,
+        'USER': POSTGRES_USER,
+        'PASSWORD': POSTGRES_PASSWORD,
+        'HOST': POSTGRES_HOST, # Todo: Should be changed to real DB service
     }
 }
 
@@ -149,7 +161,7 @@ STATIC_ROOT = os.getenv("STATIC_ROOT", os.path.join(BASE_DIR, "static"))
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "staticfiles")]
 
 
-DEBUG = True
+DEBUG = os.getenv("DEBUG", True)
 SITE_ID = 1
 
 
