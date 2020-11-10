@@ -29,10 +29,8 @@ sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-# # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(",")
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*')
 
 # postgres
 POSTGRES_HOST = os.getenv("POSTGRES_HOST", "localhost")
@@ -168,8 +166,6 @@ SITE_ID = 1
 
 # Deployment settings
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-# DEBUG = True
-# ALLOWED_HOSTS = ['giftu.herokuapp.com']
 # SITE_ID = 2
 # import django_heroku
 # django_heroku.settings(locals())
