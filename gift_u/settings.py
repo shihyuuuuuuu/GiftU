@@ -28,8 +28,6 @@ sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
-
-
 ALLOWED_HOSTS = ['giftu.heroku.com','127.0.0.1', '*']
 
 # postgres
@@ -96,12 +94,6 @@ WSGI_APPLICATION = 'gift_u.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-POSTGRES_DB = "giftu_db"
-POSTGRES_USER = "admin"
-POSTGRES_PASSWORD = "admin"
-POSTGRES_HOST = "localhost"
-
 DATABASES = {
     'default': {
         ## Deprecated
@@ -154,18 +146,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # for python manage.py collectstatic
-STATIC_ROOT = os.getenv("STATIC_ROOT", os.path.join(BASE_DIR, "static"))
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # You may have static assets that aren’t tied to a particular app; Django will also look for static files here
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "staticfiles")]
+STATICFILES_DIRS = os.path.join(BASE_DIR, "staticfiles")
 
 
 DEBUG = os.getenv("DEBUG", True)
 SITE_ID = 1
 
 
-
-# Deployment settings
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # SITE_ID = 2
 # import django_heroku
 # django_heroku.settings(locals())
