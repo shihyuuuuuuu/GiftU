@@ -146,7 +146,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # for python manage.py collectstatic
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # You may have static assets that aren’t tied to a particular app; Django will also look for static files here
 STATICFILES_DIRS = os.path.join(BASE_DIR, "staticfiles")
 
