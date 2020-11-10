@@ -30,7 +30,7 @@ sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*')
+ALLOWED_HOSTS = ['giftu.heroku.com','127.0.0.1', '*']
 
 # postgres
 POSTGRES_HOST = os.getenv("POSTGRES_HOST", "localhost")
