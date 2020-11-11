@@ -152,10 +152,8 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "staticfiles")]
 
 
 DEBUG = os.getenv("DEBUG", True)
-SITE_ID = 1
+SITE_ID = os.getenv("SITE_ID", True) #heroku: 2
 
-
-# SITE_ID = 2
 # import django_heroku
 # django_heroku.settings(locals())
 
