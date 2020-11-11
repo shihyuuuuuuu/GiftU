@@ -45,17 +45,14 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    
     'django.contrib.sites',
+    'django.contrib.staticfiles',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
-
-    
     'django.contrib.messages',
-    'django.contrib.staticfiles',
     'survey',
 ]
 
@@ -67,6 +64,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Simplified static file serving.
+    # https://warehouse.python.org/project/whitenoise/
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'gift_u.urls'
@@ -96,9 +96,6 @@ WSGI_APPLICATION = 'gift_u.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 DATABASES = {
     'default': {
-        ## Deprecated
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': POSTGRES_DB,
         'USER': POSTGRES_USER,
@@ -149,6 +146,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.getenv("STATIC_ROOT", os.path.join(BASE_DIR, "static"))
 # You may have static assets that aren’t tied to a particular app; Django will also look for static files here
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "staticfiles")]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 DEBUG = os.getenv("DEBUG", True)
