@@ -20,11 +20,9 @@ from . import views ## For baseDir
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='landing_page'),
-    path('home', views.home, name='home'),
+    path('', views.index, name='index'),
+    path('home/', views.home, name='home'),
 
     path('accounts',include('allauth.urls')),
     path('accounts/profile/',views.profile, name='user_profile'),
-    path('accounts/dashboard/',views.dashboard, name='user_dashboard'),
-    path('survey/',include('survey.urls')),
 ]
