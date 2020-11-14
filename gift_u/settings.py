@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
     'django.contrib.messages',
+    #apps
+    'gift_u.apps.email_service'
 ]
 
 MIDDLEWARE = [
@@ -181,4 +183,17 @@ AUTHENTICATION_BACKENDS = [
         'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'ntustartup2019@gmail.com'
+EMAIL_HOST_PASSWORD = 'osebceyysxigbhff'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+#celery
+CELERY_BROKER_URL = 'redis://:p6cc88424919a5a38852a60bfbf0f2b648d4d6469cd4e6c9f0e8770779c768a9d@ec2-54-84-207-7.compute-1.amazonaws.com:20949'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
+
