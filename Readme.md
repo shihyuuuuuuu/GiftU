@@ -1,6 +1,8 @@
 # GiftU
 A website that provides service for connecting with your old friends! A registered user can fill out surveys with three options and warm messages, which will later transform to an email and send to your friends; your friends can also select an option and send it back to you.
 
+# link: https://giftu.herokuapp.com/
+
 ## Project structure
 （參考：https://web.archive.org/web/20140409085244/http://www.deploydjango.com/django_project_structure)<br>
 ```
