@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <label for="recipient">收件人信箱</label><br>
+    <input type="email" name="recipient"><br>
+    
+    <label for="title">標題</label><br>
+    <input type="text" name="title"><br>
+    
+    <label for="message">信件內容</label><br>
+    <textarea name="message" rows="10" cols="30"></textarea>
+    
+    <input type="submit"></button>
+</form>
+{% endblock %}
