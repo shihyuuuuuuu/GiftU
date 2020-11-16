@@ -8,5 +8,5 @@ def send_email_task(recipient, title, message):
         'title':title,
         'message':message
     })
-    send_mail(title, message,'ntustartup2019@gmail.com',[recipient], fail_silently=False, html_message=html_message)
+    send_mail(title, message,'心禮系<ntustartup2019@gmail.com>',[recipient], fail_silently=False, html_message=html_message)
     return 'Task Completed!'
