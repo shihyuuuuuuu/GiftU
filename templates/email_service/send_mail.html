@@ -3,14 +3,27 @@
 {% block content %}
 <form method="post">
     {% csrf_token %}
+    
+    {% if recipient %}
+    <label for="recipient">收件人信箱</label><br>
+    <input name="anonymous" value="anonymous you" style="background: whiteSmoke; color:grey; pointer-events: none;"><br>
+    <input type='hidden' name="recipient" value={{recipient}}><br>
+
+    {% else %}
     <label for="recipient">收件人信箱</label><br>
     <input type="email" name="recipient"><br>
+    {% endif %}
+    
     
     <label for="title">標題</label><br>
     <input type="text" name="title"><br>
     
     <label for="message">信件內容</label><br>
-    <textarea name="message" rows="10" cols="30"></textarea>
+    <textarea name="message" rows="10" cols="30"></textarea><br>
+
+    <label for="sender">您的email(選填)</label><br>
+    <span style="font-size: small;">*此欄位將會用來產生一條加密連結，讓對方想要的話可以回信給您，但不會知道您的真實email</span><br>
+    <input type="email" name="sender"><br>
     
     <input type="submit"></button>
 </form>
