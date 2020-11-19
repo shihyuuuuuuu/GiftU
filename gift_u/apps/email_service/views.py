@@ -9,14 +9,23 @@ from .tasks import send_email_task
 
 def index(request):
     if request.method == 'POST':
+        
         data = request.POST
-        recipient = decode(data['recipient']) if request.POST.get('anonymous') else data['recipient']
+        # Todo: 用serializer
+        sender = decode(data['sender']) if data['is_reply'] == True else data['sender']
+        if sender == '': sender = None #should be moved to serializer logic
+        recipient = decode(data['recipient']) if data['is_reply'] == True else data['recipient']
+        anonymous = True if data['anonymous'] == 'true' else False
 
-        send_email_task.delay(sender=data['sender'], recipient=recipient, title=data['title'], message=data['message'])
+        send_email_task.delay(sender=sender, recipient=recipient, title=data['title'], message=data['message'], anonymous=anonymous)
         return HttpResponse('<h1>感謝您使用本服務，信件已經寄出囉！</h1>')
     else:
+        sender = request.GET.get("sender")
         recipient = request.GET.get("recipient")
-        return render(request, 'email_service/send_mail.html',context={"recipient":recipient})
+        if sender and recipient:
+            return render(request, 'email_service/reply_mail.html',context={"sender":sender, "recipient":recipient})
+
+        return render(request, 'email_service/sender_mail.html',{})
     
 
 
