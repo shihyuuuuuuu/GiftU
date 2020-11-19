@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <input type='hidden' name="is_reply" value="true"><br>
+
+    <!-- 匿名寄信者寄出後，回信時會自動帶入寄信者email -->
+    <label for="recipient">收件人信箱</label><br>
+    <input value="anonymous you" style="background: whiteSmoke; color:grey; pointer-events: none;"><br>
+    <input type='hidden' name="recipient" value={{recipient}}><br>
+    
+    
+    <label for="title">標題</label><br>
+    <input type="text" name="title"><br>
+    
+    <label for="message">信件內容</label><br>
+    <span style="font-size: small;">*小提醒：由於此封信為完全匿名，建議可以在信末附上你的綽號或暗示，讓對方猜猜你是誰喔：）</span><br>
+    <textarea name="message" rows="10" cols="30"></textarea><br>
+
+    <!-- 匿名寄件者寄出後，回信時會將收件者設為寄件者 -->
+    <input type='hidden' name="sender" value={{sender}}><br>
+    <input type='hidden' name="anonymous" value="true"><br>
+    
+    <input type="submit"></button>
+</form>
+{% endblock %}
