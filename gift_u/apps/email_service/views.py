@@ -20,8 +20,8 @@ def index(request):
         recipient = decode(data['recipient']) if is_reply == True else data['recipient']
         
         sender_info = {
-            sender_name = sender.split('@')[0] if sender else '匿名使用者',
-            anonymous = True if data['anonymous'] == 'true' else False,
+            sender_name: sender.split('@')[0] if sender else '匿名使用者',
+            anonymous: True if data['anonymous'] == 'true' else False,
         }
 
         if is_reply: #回信不能再回覆
