@@ -11,13 +11,25 @@ def index(request):
     if request.method == 'POST':
         
         data = request.POST
-        # Todo: 用serializer
-        sender = decode(data['sender']) if data['is_reply'] == True else data['sender']
-        if sender == '': sender = None #should be moved to serializer logic
-        recipient = decode(data['recipient']) if data['is_reply'] == True else data['recipient']
-        anonymous = True if data['anonymous'] == 'true' else False
+        # Todo: 用serializer做驗證
+        is_reply = data['is_reply']
 
-        send_email_task.delay(sender=sender, recipient=recipient, title=data['title'], message=data['message'], anonymous=anonymous)
+        sender = decode(data['sender']) if is_reply == True else data['sender']
+        if sender == '': sender = None #should be moved to serializer logic
+
+        recipient = decode(data['recipient']) if is_reply == True else data['recipient']
+        
+        sender_info = {
+            sender_name = sender.split('@')[0] if sender else '匿名使用者',
+            anonymous = True if data['anonymous'] == 'true' else False,
+        }
+
+        if is_reply: #回信不能再回覆
+            reply_link = None
+        else:
+            reply_link = f"https://giftu.herokuapp.com/email_service/?sender={encode(sender)}&recipient={encode(sender)}" if sender else None #寄信時有提供email，才會有回覆連結
+
+        send_email_task.delay(sender_info=sender_info, recipient=recipient, title=data['title'], message=data['message'], reply_link=reply_link)
         return HttpResponse('<h1>感謝您使用本服務，信件已經寄出囉！</h1>')
     else:
         sender = request.GET.get("sender")
