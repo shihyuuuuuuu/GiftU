@@ -1,27 +1,70 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<form method="post">
+<style>
+    body {
+        background-color: #282d40;
+    }
+
+    form {
+        margin: 4rem auto;
+        width: 90%;
+    }
+
+    .ui.form .field {
+        margin-bottom: 2rem;
+    }
+
+    .ui.form .field label {
+        font-size: 1.3rem;
+        margin-bottom: 0.7rem;
+    }
+
+    .ui.inverted.form .field input {
+        background: #b18d99;
+        color: #644f56;
+    }
+
+    span {
+        color: #ffffff;
+        font-size: 1rem;
+    }
+</style>
+<form class="ui inverted form" method="post">
     {% csrf_token %}
     <input type='hidden' name="is_reply" value="true"><br>
 
     <!-- 匿名寄信者寄出後，回信時會自動帶入寄信者email -->
-    <label for="recipient">收件人信箱</label><br>
-    <input value="anonymous you" style="background: whiteSmoke; color:grey; pointer-events: none;"><br>
+    <div class="field">
+        <label for="recipient">收件人信箱</label>
+        <div class="ui left large icon input">
+            <i class="envelope large icon"></i>
+            <input value="anonymous you" style="background: whiteSmoke; color:grey; pointer-events: none;">
+        </div>
+    </div>
     <input type='hidden' name="recipient" value={{recipient}}><br>
     
+    <div class="field">
+        <label for="title">標題</label>
+        <div class="ui left large icon input">
+            <i class="gift large icon"></i>
+            <input type="text" name="title" required>
+        </div>
+    </div>
     
-    <label for="title">標題</label><br>
-    <input type="text" name="title"><br>
-    
-    <label for="message">信件內容</label><br>
-    <span style="font-size: small;">*小提醒：由於此封信為完全匿名，建議可以在信末附上你的綽號或暗示，讓對方猜猜你是誰喔：）</span><br>
-    <textarea name="message" rows="10" cols="30"></textarea><br>
+    <div class="field">
+        <label for="message">信件內容</label>
+        <span>*小提醒：由於此封信為完全匿名，建議可以在信末附上你的綽號或暗示，讓對方猜猜你是誰喔：）</span>
+        <div class="ui left large icon input">
+            <i class="pencil alternate large icon"></i>
+            <textarea name="message" rows="3" style="background: #b18d99; color: #644f56;" required></textarea>
+        </div>
+    </div>
 
     <!-- 匿名寄件者寄出後，回信時會將收件者設為寄件者 -->
     <input type='hidden' name="sender" value={{sender}}><br>
     <input type='hidden' name="anonymous" value="true"><br>
     
-    <input type="submit"></button>
+    <button class="ui inverted button" type="submit">寄信<i class="paper plane right icon"></i></button>
 </form>
 {% endblock %}
