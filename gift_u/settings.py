@@ -149,8 +149,11 @@ STATIC_ROOT = os.getenv("STATIC_ROOT", os.path.join(BASE_DIR, "static"))
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "staticfiles")]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+if os.getenv("DEBUG") == "true":
+    DEBUG = True
+else:
+    DEBUG = False
 
-DEBUG = os.getenv("DEBUG", True)
 SITE_ID = os.getenv("SITE_ID", True) #heroku: 2
 
 # import django_heroku
