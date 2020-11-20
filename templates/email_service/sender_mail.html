@@ -1,34 +1,92 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<form method="post">
+<style>
+    body {
+        background-color: #282d40;
+    }
+
+    form {
+        margin: 4rem auto;
+        width: 90%;
+    }
+
+    .ui.form .field {
+        margin-bottom: 2rem;
+    }
+
+    .ui.form .field label {
+        font-size: 1.3rem;
+        margin-bottom: 0.7rem;
+    }
+
+    .ui.inverted.form .field input {
+        background: #b18d99;
+        color: #644f56;
+    }
+
+    span {
+        color: #ffffff;
+        font-size: 1rem;
+    }
+
+    #thankU {
+        color: #b18d99;
+        margin-top: 15%;
+        text-align: center;
+    }
+</style>
+{% if not thankU %}
+<form class="ui inverted form" method="post">
     {% csrf_token %}
-    <input type='hidden' name="is_reply" value="false"><br>
+    <input type='hidden' name="is_reply" value="false">
 
-    <label for="recipient">收件人信箱</label><br>
-    <input type="email" name="recipient" required><br>
-    
-    <label for="title">標題</label><br>
-    <input type="text" name="title" required><br>
-    
-    <label for="message">信件內容</label>
-    <span style="font-size: small;">    （*小提醒：由於此封信為完全匿名，建議可以在信末附上你的綽號或暗示，讓對方猜猜你是誰喔：）</span><br>
-    <textarea name="message" rows="10" cols="30" required></textarea><br>
-
-    <div>
-        <label for="sender">您的email(選填)</label>
-        <span style="font-size: small;">    （*此欄位將會用來產生一條加密連結，讓對方也能回信給你）</span><br>
-        <input type="email" name="sender"><br>
-
-        <!-- 暫時預設為不顯示 -->
-        <div style="display: none;">
-            <label for="anonymous">是否顯示email給對方</label>
-            <p><input type="radio" name="anonymous" value="false">Yes</input></p>
-            <p><input type="radio" name="anonymous" value="true" checked>No</input></p>
+    <div class="field">
+        <label for="recipient">收件人信箱</label>
+        <div class="ui left large icon input">
+            <i class="envelope large icon"></i>
+            <input type="email" name="recipient" required>
         </div>
-            
+    </div>
+    
+    <div class="field">
+        <label for="title">標題</label>
+        <div class="ui left large icon input">
+            <i class="gift large icon"></i>
+            <input type="text" name="title" required>
+        </div>
+    </div>
+    
+    <div class="field">
+        <label for="message">信件內容</label>
+        <span>*小提醒：由於此封信為完全匿名，建議可以在信末附上你的綽號或暗示，讓對方猜猜你是誰喔：）</span>
+        <div class="ui left large icon input">
+            <i class="pencil alternate large icon"></i>
+            <textarea name="message" rows="3" style="background: #b18d99; color: #644f56;" required></textarea>
+        </div>
     </div>
 
-    <input type="submit"></button>
+    <div class="field">
+        <label for="sender">您的email（選填）</label>
+        <span style="font-size: small;">*此欄位將會用來產生一條加密連結，讓對方也能回信給你</span>
+        <div class="ui left large icon input">
+            <i class="user secret large icon"></i>
+            <input type="email" name="sender">
+        </div>
+    </div>
+
+    <!-- 暫時預設為不顯示 -->
+    <div class="field" style="display: none;">
+        <label for="anonymous">是否顯示 email 給對方</label>
+        <input type="radio" name="anonymous" value="false"><span>&emsp;是</span></input><br>
+        <input type="radio" name="anonymous" value="true" checked><span>&emsp;否</span></input>
+    </div>
+
+    <button class="ui inverted button" type="submit">寄信<i class="paper plane right icon"></i></button>
 </form>
+{% else %}
+<div id="thankU">
+    <h1>{{ thankU }}</h1>
+</div>
+{% endif %}
 {% endblock %}

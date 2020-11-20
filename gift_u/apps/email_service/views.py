@@ -32,7 +32,7 @@ def index(request):
         }   
 
         send_email_task.delay(sender_info=sender_info, recipient=recipient, title=data['title'], message=data['message'], reply_link=reply_link)
-        return HttpResponse('<h1>感謝您使用本服務，信件已經寄出囉！</h1>')
+        return render(request, 'email_service/sender_mail.html',context={"thankU":"感謝您使用本服務，信件已經寄出囉！"})
     else:
         sender = request.GET.get("sender")
         recipient = request.GET.get("recipient")
